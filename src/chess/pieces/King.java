@@ -30,7 +30,7 @@ public class King extends Piece {
 	//returns true if move legal.
 	public boolean checkMove(Game g, Move m) {
 		return super.checkMove(g, m) 
-				&& 	(oneRowOrOneColumnOrBoth.test(m) || castling(g,m));
+				&& (oneRowOrOneColumnOrBoth.test(m) || castling(g,m));
 	}
 
 	//returns true if the move is a legal castling move.
