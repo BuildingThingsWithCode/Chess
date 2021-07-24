@@ -34,9 +34,9 @@ public class Pawn extends Piece {
 	public boolean checkMove(Game g, Move m) {
 		Predicate<Move> directionForColor = m.getColor() == WHITE ? up : down;
 		return super.checkMove(g, m)
-				&& 		(checkForTakingAPiece(g, m, directionForColor)
-						|| checkForRegularMove(m, directionForColor)
-						|| checkForBigFirstStep(g, m, directionForColor));
+				&& (checkForTakingAPiece(g, m, directionForColor)
+				    || checkForRegularMove(m, directionForColor)
+				    || checkForBigFirstStep(g, m, directionForColor));
 	}
 
 	/*
