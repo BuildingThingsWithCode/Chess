@@ -14,12 +14,12 @@ import javafx.scene.Scene;
 
 public class EndedByUserStage {
 
-	private Controller  		  controller;
-	private SecondStage 		  secondStage;
-	private EvaluationResult 	  result;
+	private Controller  	      controller;
+	private SecondStage 	      secondStage;
+	private EvaluationResult      result;
 	private EndedByUserController endedByUserController;
-	private String 				  activePlayer;
-	private String 			 	  otherPlayer;
+	private String 		      activePlayer;
+	private String 		      otherPlayer;
 	
 	//CONSTRUCTOR
 	public EndedByUserStage(Controller controller, EvaluationResult result) {
@@ -35,7 +35,7 @@ public class EndedByUserStage {
 	//METHODS
 	public void setSceneAndShow() {
 		secondStage.setTitle("");
-		String endMessage 		= result == RESIGN ? activePlayer+" resigns."+"\n"+otherPlayer+" wins." : "Both players agreed on a draw.";
+		String endMessage       = result == RESIGN ? activePlayer+" resigns."+"\n"+otherPlayer+" wins." : "Both players agreed on a draw.";
 		String acceptButtonText = result == RESIGN ? "Resign" : "Accept";
 		String cancelButtonText = result == RESIGN ? "Play On" : "Decline";
 		String confirmationText = result == RESIGN ? activePlayer+"\n"+" are you sure you want to resign?" : activePlayer+" offers a draw."+"\n"+otherPlayer+" do you accept?";
