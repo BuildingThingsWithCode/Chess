@@ -19,13 +19,13 @@ public class PromotionStage {
 
 	private Controller  controller;
 	private SecondStage secondStage;
-	private Color 		color;
+	private Color 	    color;
 
 	//CONSTRUCTOR
 	public PromotionStage(Controller controller, Color color) {
 		this.controller  = controller;
 		this.secondStage = controller.getSecondStage();
-		this.color 		 = color;
+		this.color 	 = color;
 	}
 	
 
