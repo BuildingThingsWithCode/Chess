@@ -44,7 +44,7 @@ public class EndedByUserStage {
 			Scene endedByUserScene = new Scene(loader.load());
 			secondStage.setScene(endedByUserScene);
 			endedByUserController = loader.getController();
-			//Listener for "user accepts draw or is sure he want to resign".
+			//Listener for "user accepts draw or is sure he wants to resign".
 			endedByUserController.getEndedByUser().addListener((ChangeListener<Boolean>) (ObservableValue, oldValue, newValue) -> {
 				if (newValue == true) {
 					if (result == RESIGN) {
