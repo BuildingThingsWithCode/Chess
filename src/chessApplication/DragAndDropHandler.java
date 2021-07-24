@@ -42,11 +42,11 @@ import javafx.scene.paint.Color;
 
 public class DragAndDropHandler {
 
-	private static final Label 		      TEMP_BG        = new Label();
-	private static final Background       DARK_GOLD	  	 = new Background(new BackgroundFill(DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY));
-	private static Sounds 				  sounds 		 = new Sounds();
-	private static ObjectProperty<Move>   move  	  	 = new SimpleObjectProperty<Move>();
-	private static ObservableBooleanValue moveLegal 	 = new SimpleBooleanProperty(false);
+	private static final Label 	      TEMP_BG        = new Label();
+	private static final Background       DARK_GOLD	     = new Background(new BackgroundFill(DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY));
+	private static Sounds 		      sounds 	     = new Sounds();
+	private static ObjectProperty<Move>   move	     = new SimpleObjectProperty<Move>();
+	private static ObservableBooleanValue moveLegal      = new SimpleBooleanProperty(false);
 	private static ObservableList<String> capturedPieces = FXCollections.observableList(new ArrayList<String>());
 
 	//CONSTRUCTOR
