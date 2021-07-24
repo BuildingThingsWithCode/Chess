@@ -14,7 +14,7 @@ public class Field {
 
 	//CONSTRUCTOR
 	public Field (int row, int column) {
-		this.row	= row;
+		this.row    = row;
 		this.column = column;
 	}
 
