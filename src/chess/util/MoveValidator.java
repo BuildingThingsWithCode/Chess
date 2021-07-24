@@ -57,8 +57,8 @@ public interface MoveValidator extends BiFunction <Game, Move, ValidationResult>
 				King king = (King) m.getPiece();
 				//we need this check because all further checks depends on knowing that the king makes a legal move.
 				if (oneRowOrOneColumnOrBoth.test(m) || (twoColumns.test(m) && noRows.test(m))) {
-					if (! king.notInCheck.test(g, m)) 		    return CHECK_ON_KING_CANNOT_CASTLE;
-					if (king.hasMoved()) 						return KING_HAS_MOVED_CANNOT_CASTLE;
+					if (! king.notInCheck.test(g, m))	    return CHECK_ON_KING_CANNOT_CASTLE;
+					if (king.hasMoved())			    return KING_HAS_MOVED_CANNOT_CASTLE;
 					if (! king.rookEligibleToCastle.test(g, m)) return ROOK_HAS_MOVED_CANNOT_CASTLE;
 					if (! king.kingEligibleToCastle.test(g, m)) return KING_MOVES_OVER_FIELD_IN_CHECK;
 				}
