@@ -54,29 +54,29 @@ import javafx.scene.paint.Color;
 public class Game {
 
 	//FIELDS
-	private Board  							 board;
-	private Player 							 white;
-	private Player 							 black;
-	private Move							 lastMove;
-	private Player						     activePlayer; 		   
-	private List<GameState> 			 	 gameStates 	       = new ArrayList<GameState>();
-	private List<Piece>					     takenPieces 		   = new ArrayList<Piece>();
-	private List<String>					 threeFoldRepetionList = new ArrayList<String>();
-	private ObservableMap<String,Move> 	     extraActionRequired   = FXCollections.observableMap(new HashMap<String,Move>());
-	private ObservableList<ValidationResult> validationResult 	   = FXCollections.observableList(new ArrayList<ValidationResult>()); 
-	private ObservableList<EvaluationResult> evaluationResult 	   = FXCollections.observableList(new ArrayList<EvaluationResult>());
-	private int 							 halfMove 	   		   = 0;
+	private Board  				 board;
+	private Player 				 white;
+	private Player 				 black;
+	private Move				 lastMove;
+	private Player				 activePlayer; 		   
+	private List<GameState> 		 gameStates 	       = new ArrayList<GameState>();
+	private List<Piece>	      	         takenPieces 	       = new ArrayList<Piece>();
+	private List<String>		         threeFoldRepetionList = new ArrayList<String>();
+	private ObservableMap<String,Move>	 extraActionRequired   = FXCollections.observableMap(new HashMap<String,Move>());
+	private ObservableList<ValidationResult> validationResult      = FXCollections.observableList(new ArrayList<ValidationResult>()); 
+	private ObservableList<EvaluationResult> evaluationResult      = FXCollections.observableList(new ArrayList<EvaluationResult>());
+	private int 				 halfMove 	       = 0;
 	//full move starts at 1.
-	private int 							 fullMove 	   		   = 1;
-	private String 							 enpassantField 	   = " -";
-	private final int 					  	 ENPASSANT_ROW_WHITE   = 3;
-	private final int 					  	 ENPASSANT_ROW_BLACK   = 6;
+	private int 				 fullMove	       = 1;
+	private String 				 enpassantField        = " -";
+	private final int 			 ENPASSANT_ROW_WHITE   = 3;
+	private final int 			 ENPASSANT_ROW_BLACK   = 6;
 
 	//CONSTRUCTOR
 	public Game (Board board, Player player1, Player player2) {
-		this.board 	 = board;
-		white 	   	 = player1.getColor() == WHITE ? player1 : player2;
-		black 	   	 = player1.getColor() == BLACK ? player1 : player2;
+		this.board   = board;
+		white	     = player1.getColor() == WHITE ? player1 : player2;
+		black	     = player1.getColor() == BLACK ? player1 : player2;
 		activePlayer = white; 
 
 	}
