@@ -204,7 +204,6 @@ public class Controller extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage.getIcons().add(new Image(getClass().getResource("../resources/images/icon.png").toString()));
-		//stage.getIcons().add(new Image("file:///C:/workspace/Chess/src/resources/icon.png"));
 		stage.setTitle("Chess...");
 		root = FXMLLoader.load(getClass().getResource("Layout.fxml"));
 		Scene scene = new Scene(root, 860, 490);
