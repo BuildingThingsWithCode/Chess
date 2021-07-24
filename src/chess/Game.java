@@ -468,7 +468,7 @@ public class Game {
 		move.getEnd().setPiece(move.getPiece());
 	}
 
-	//prints the FEN notation of the game, to the console.
+	//prints the FEN notation of the game to the console.
 	private void printGameToConsole(Move move) {
 		System.out.println(gameToFEN.apply(this));
 	}
