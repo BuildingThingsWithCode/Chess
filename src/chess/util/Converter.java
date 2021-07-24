@@ -24,10 +24,10 @@ import chess.pieces.Rook;
 
 public final class Converter {
 	
-	public static final Map<Piece, List<String>>  FEN_MAP 		= new HashMap<Piece, List<String>>();
-	public static final Map<Integer, String> 	  EMPTY_FIELDS 	= new HashMap<Integer, String>();
-	public static final Map<String, int[]>        CASTLING_MAP  = new HashMap<String, int[]>();
-	public static final Map<int[][],String> 	  PIECES  		= new HashMap<>();
+	public static final Map<Piece, List<String>>  FEN_MAP 	   = new HashMap<Piece, List<String>>();
+	public static final Map<Integer, String>      EMPTY_FIELDS = new HashMap<Integer, String>();
+	public static final Map<String, int[]>        CASTLING_MAP = new HashMap<String, int[]>();
+	public static final Map<int[][],String>       PIECES  	   = new HashMap<>();
 	
 	private Converter() {}
 	
@@ -74,10 +74,10 @@ public final class Converter {
 	}
 	
 	static {
-		PIECES.put(new int[][] {{0,3}}, 	   "♔");
-		PIECES.put(new int[][] {{7,3}}, 	   "♚");
-		PIECES.put(new int[][] {{0,4}},		   "♕");
-		PIECES.put(new int[][] {{7,4}}, 	   "♛");
+		PIECES.put(new int[][] {{0,3}},	       "♔");
+		PIECES.put(new int[][] {{7,3}},	       "♚");
+		PIECES.put(new int[][] {{0,4}},	       "♕");
+		PIECES.put(new int[][] {{7,4}},        "♛");
 		PIECES.put(new int[][] {{0,0}, {0,7}}, "♖");
 		PIECES.put(new int[][] {{7,0}, {7,7}}, "♜");
 		PIECES.put(new int[][] {{0,2}, {0,5}}, "♗");
@@ -103,12 +103,12 @@ public final class Converter {
 	 * returns an Optional containing the piece to be used in the model or no value, given a row - and column index.
 	 */
 	public static BiFunction<Integer, Integer, Optional<Piece>> xyModelPiece = (rowIndex, columnIndex) -> {
-		if (rowIndex == 1) 											 return Optional.of(new Pawn(WHITE));
-		if (rowIndex == 6) 											 return Optional.of(new Pawn(BLACK));
-		if (rowIndex == 0 && columnIndex == 3) 						 return Optional.of(new King(WHITE));
-		if (rowIndex == 7 && columnIndex == 3) 						 return Optional.of(new King(BLACK));
-		if (rowIndex == 0 && columnIndex == 4) 						 return Optional.of(new Queen(WHITE));
-		if (rowIndex == 7 && columnIndex == 4) 						 return Optional.of(new Queen(BLACK));
+		if (rowIndex == 1)					     return Optional.of(new Pawn(WHITE));
+		if (rowIndex == 6)					     return Optional.of(new Pawn(BLACK));
+		if (rowIndex == 0 && columnIndex == 3)			     return Optional.of(new King(WHITE));
+		if (rowIndex == 7 && columnIndex == 3)			     return Optional.of(new King(BLACK));
+		if (rowIndex == 0 && columnIndex == 4)			     return Optional.of(new Queen(WHITE));
+		if (rowIndex == 7 && columnIndex == 4)			     return Optional.of(new Queen(BLACK));
 		if (rowIndex == 0 && (columnIndex == 0 || columnIndex == 7)) return Optional.of(new Rook(WHITE));
 		if (rowIndex == 7 && (columnIndex == 0 || columnIndex == 7)) return Optional.of(new Rook(BLACK));
 		if (rowIndex == 0 && (columnIndex == 2 || columnIndex == 5)) return Optional.of(new Bishop(WHITE));
