@@ -15,9 +15,9 @@ import javafx.scene.paint.Color;
 
 public class Timers {
 
-	private Controller 	 controller;
-	private Timeline  	 timeline1; 
-	private Timeline   	 timeline2;	
+	private Controller   controller;
+	private Timeline     timeline1; 
+	private Timeline     timeline2;	
 	private TimeListener listener1;
 	private TimeListener listener2;
 	
