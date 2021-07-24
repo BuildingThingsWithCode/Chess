@@ -25,12 +25,12 @@ import javafx.scene.layout.VBox;
 
 public class PromotionController {
 
-	public StringProperty piece    		  = new SimpleStringProperty("");
-	private Border 		  borderInvisible = new Border (new BorderStroke(TRANSPARENT, SOLID, EMPTY, null));
-	private Border 		  borderVisible   = new Border (new BorderStroke(DARKGOLDENROD, SOLID, EMPTY, null));
+	public StringProperty piece    	      = new SimpleStringProperty("");
+	private Border        borderInvisible = new Border (new BorderStroke(TRANSPARENT, SOLID, EMPTY, null));
+	private Border 	      borderVisible   = new Border (new BorderStroke(DARKGOLDENROD, SOLID, EMPTY, null));
 	
-	@FXML VBox root;
-	@FXML HBox pieces;
+	@FXML VBox   root;
+	@FXML HBox   pieces;
 	@FXML Button selectButton;
 	
 	
