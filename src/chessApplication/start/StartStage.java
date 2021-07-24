@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 
 public class StartStage {
 
-	private Controller 	 controller;
+	private Controller   controller;
 	private ActionEvent  event;
 	private SecondStage  secondStage;
 	private BoardHandler boardHandler;
@@ -31,7 +31,7 @@ public class StartStage {
 	//CONSTRUCTOR
 	public StartStage(Controller controller, ActionEvent event) {
 		this.controller   = controller;
-		this.event 		  = event;
+		this.event 	  = event;
 		this.secondStage  = controller.getSecondStage();
 		this.boardHandler = controller.getBoardHandler();
 
