@@ -56,25 +56,25 @@ import javafx.scene.paint.Color;
 public class BoardHandler {
 	private final Background    LIGHT_TILE   = new Background(new BackgroundFill(ANTIQUEWHITE, CornerRadii.EMPTY, Insets.EMPTY));
 	private final Background    DARK_TILE    = new Background(new BackgroundFill(BURLYWOOD, CornerRadii.EMPTY, Insets.EMPTY));
-	private final Background	NEUTRAL_BG   = new Background(new BackgroundImage(new Image(getClass().getResource("../resources/images/rightBg.png").toString()), REPEAT, REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT));
+	private final Background    NEUTRAL_BG   = new Background(new BackgroundImage(new Image(getClass().getResource("../resources/images/rightBg.png").toString()), REPEAT, REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT));
 	private final List<String>  SIDE_MARKERS = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8");
 	private final List<String>  TOP_MARKERS  = Arrays.asList("h", "g", "f", "e", "d", "c", "b", "a");
-	private Color 				placement;
-	private Move 				translatedMove;
-	private GridPane 			board;
-	private VBox 				left;
-	private HBox 				top;
-	private Controller	 		controller;
-	private Label 				viewField;
-	private Field 				modelField;
-	private Timers 				timers;
+	private Color 		    placement;
+	private Move 		    translatedMove;
+	private GridPane 	    board;
+	private VBox 		    left;
+	private HBox 		    top;
+	private Controller	    controller;
+	private Label 		    viewField;
+	private Field 		    modelField;
+	private Timers 		    timers;
 	
 	//CONSTRUCTOR
 	public BoardHandler(Controller controller) {
 		this.controller = controller;
-		this.board 		= controller.board;
-		this.left 		= controller.left;
-		this.top 		= controller.top;
+		this.board      = controller.board;
+		this.left       = controller.left;
+		this.top        = controller.top;
 		setDimensions();
 		setBackgroundImage();
 
