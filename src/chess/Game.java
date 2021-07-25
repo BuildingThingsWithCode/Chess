@@ -58,7 +58,7 @@ public class Game {
 	private Player 				 white;
 	private Player 				 black;
 	private Move				 lastMove;
-	private Player				 activePlayer; 		   
+	private Player				 activePlayer; 
 	private List<GameState> 		 gameStates 	       = new ArrayList<GameState>();
 	private List<Piece>	      	         takenPieces 	       = new ArrayList<Piece>();
 	private List<String>		         threeFoldRepetionList = new ArrayList<String>();
