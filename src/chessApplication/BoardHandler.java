@@ -97,7 +97,7 @@ public class BoardHandler {
 		});
 		//set the wrapping width for the Text node.
 		controller.evaluationMessages.wrappingWidthProperty().bind(controller.right.prefWidthProperty().subtract(20.0));
-		//adjust font size, so the size of the pieces gets bigger when the board gets bigger and vice versa.
+		//adjust font size, so the size of the pieces gets bigger when the board gets bigger and smaller when the board gets smaller.
 		minOfWidthAndHeight.addListener((ChangeListener<Number>) (ObservableValue, oldValue, newValue) -> {
 			
 			BiConsumer<Integer, Integer> adjustFontSize = (threshold, fontsize) -> {
