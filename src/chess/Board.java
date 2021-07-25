@@ -40,8 +40,6 @@ public class Board {
 		.forEach(f -> f.setPiece(null));
 	}
 
-
-
 	//GETTERS & SETTERS
 	public Field[][] getBoardState() {
 		return playingField;
