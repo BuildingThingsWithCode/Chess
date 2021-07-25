@@ -14,6 +14,7 @@ import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 
 import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 import chess.Game;
 import chess.Move;
@@ -44,7 +45,7 @@ public class King extends Piece {
 	}
 
 	//returns true if the king is not in check at the moment.
-	public BiPredicate<Game, Move> notInCheck = (g, m) -> {
+	public Predicate<Game> notInCheck = g -> {
 		return attackingMoves
 				.apply(g, searchForKings.apply(g).get(getColor()))
 				.isEmpty();
@@ -54,7 +55,7 @@ public class King extends Piece {
 	public BiPredicate<Game, Move> kingEligibleToCastle = (g, m) -> {
 		BiPredicate<Move,Move> kingEligible = (m1, m2) -> {
 			return  !hasMoved()
-					&& notInCheck.test(g, m)
+					&& notInCheck.test(g)
 					&& kingSave.test(g, m1)
 					&& kingSave.test(g, m2);
 		};
