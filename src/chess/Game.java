@@ -119,7 +119,7 @@ public class Game {
 				.apply(this, m));
 	};
 
-	////adding the validation of the move to observable list.
+	//adding the validation of the move to observable list.
 	private Consumer<Move> validateMove = m -> {
 		validationResult.add(MoveValidator
 				.legalForPlayer()
