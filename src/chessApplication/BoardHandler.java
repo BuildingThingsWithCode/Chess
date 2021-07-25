@@ -360,11 +360,7 @@ public class BoardHandler {
     }
 
     //GETTERS & SETTERS
-    public Color getPlacement() {
-        return placement == WHITE ? WHITE : BLACK;
-    }
-
-    public Background getNeutralBg() {
+     public Background getNeutralBg() {
         return NEUTRAL_BG;
     }
 
