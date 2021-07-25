@@ -39,7 +39,6 @@ public class TimeListener implements ChangeListener<Number>{
 		}
 		if (newValue.intValue() == 59 && parseInt(hours) > 0 && parseInt(minutes) == 0) {
 			hours.setText(minusOne(hours));
-			if (parseInt(minutes) == 0) minutes.setText(String.format("%02d", 60));
 		}
 		if (newValue.intValue() == 59 && parseInt(minutes) > 0) {
 			minutes.setText(minusOne(minutes));
