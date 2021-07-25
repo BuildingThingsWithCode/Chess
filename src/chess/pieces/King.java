@@ -46,7 +46,7 @@ public class King extends Piece {
 	//returns true if the king is not in check at the moment.
 	public BiPredicate<Game, Move> notInCheck = (g, m) -> {
 		return attackingMoves
-				.apply(g, searchForKings.apply(g, m).get(getColor()))
+				.apply(g, searchForKings.apply(g).get(getColor()))
 				.isEmpty();
 	};
 

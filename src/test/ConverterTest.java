@@ -58,9 +58,9 @@ public class ConverterTest {
 	
 	@Test
 	void testGetPathToImage() {
-		assertEquals("file:/C:/workspace/Chess/bin/resources/images/whiteKing.png", getPathToImage("♔", 70.0));
-		assertEquals("file:/C:/workspace/Chess/bin/resources/images/whiteKing2.png", getPathToImage("♔", 78.1));
-		assertEquals("file:/C:/workspace/Chess/bin/resources/images/blackBishop.png", getPathToImage("♝", 20.0));
+		assertEquals("file:/C:/workspace/Chess/bin/resources/images/normal/whiteKing.png", getPathToImage("♔", 70.0));
+		assertEquals("file:/C:/workspace/Chess/bin/resources/images/big/whiteKing2.png", getPathToImage("♔", 78.1));
+		assertEquals("file:/C:/workspace/Chess/bin/resources/images/normal/blackBishop.png", getPathToImage("♝", 20.0));
 	}
 	
 	@Test

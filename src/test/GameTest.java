@@ -47,15 +47,14 @@ class GameTest {
 
 	@Test
 	void testSearchForKings() {
-		assertEquals(board.getField(0, 3), searchForKings.apply(game, null).get(WHITE));
-		assertEquals(board.getField(7, 3), searchForKings.apply(game, null).get(BLACK));
+		assertEquals(board.getField(0, 3), searchForKings.apply(game).get(WHITE));
+		assertEquals(board.getField(7, 3), searchForKings.apply(game).get(BLACK));
 		board.setPiece(0, 3, null);
 		board.setPiece(7, 3, null);
 		board.setPiece(3, 2, whiteKing);
 		board.setPiece(6, 7, blackKing);
-		searchForKings.apply(game, null);
-		assertEquals(board.getField(3, 2), searchForKings.apply(game, null).get(WHITE));
-		assertEquals(board.getField(6, 7), searchForKings.apply(game, null).get(BLACK));
+		assertEquals(board.getField(3, 2), searchForKings.apply(game).get(WHITE));
+		assertEquals(board.getField(6, 7), searchForKings.apply(game).get(BLACK));
 	}
 
 	@Test

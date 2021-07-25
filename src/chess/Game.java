@@ -167,7 +167,7 @@ public class Game {
 	 * Locates the position of the kings and returns a map where Color is the key and 
 	 * the field containing the King is the value.
 	 */
-	public static BiFunction<Game, Move, Map<Color,Field>> searchForKings = (g, m) -> { 
+	public static Function<Game, Map<Color,Field>> searchForKings = g -> { 
 		return Stream.of(g.getBoardState())											
 				.flatMap(Arrays::stream)
 				.filter(Field::piecePresent)
@@ -202,10 +202,10 @@ public class Game {
 		//see if the king is save.
 		boolean kingSave = m.getColor() == WHITE ? 
 				attackingMoves
-				.apply(g, searchForKings.apply(g,m).get(WHITE))
+				.apply(g, searchForKings.apply(g).get(WHITE))
 				.isEmpty() : 
 					attackingMoves
-					.apply(g, searchForKings.apply(g,m).get(BLACK))
+					.apply(g, searchForKings.apply(g).get(BLACK))
 					.isEmpty();
 				//undo the move.		
 				g.rewindMove(m, enemy);
@@ -230,8 +230,8 @@ public class Game {
 	 */
 	public Predicate<Move> checkOnOpponent = m -> {
 		return !attackingMoves.apply(this, m.getColor() == Color.WHITE ?
-				searchForKings.apply(this,m).get(BLACK) :
-					searchForKings.apply(this,m).get(WHITE)).isEmpty();
+				searchForKings.apply(this).get(BLACK) :
+					searchForKings.apply(this).get(WHITE)).isEmpty();
 	};
 
 	/*
