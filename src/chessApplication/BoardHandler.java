@@ -340,7 +340,7 @@ public class BoardHandler {
                         //r.nextInt(64) we randomly pick one of the 64 fields and change it background to random values
                         ((Region) board.getChildren()
                                 .get(r.nextInt(64)))
-                        // last value is opacity, 1.0 == not transparent; 0.0 = completely transparent
+                        // last value of Color is opacity, 1.0 == not transparent; 0.0 = completely transparent
                         .setBackground(new Background(new BackgroundFill(new Color(Math.random(), Math.random(), Math.random(), Math.random()),
                                 CornerRadii.EMPTY, Insets.EMPTY)));
                         try {
