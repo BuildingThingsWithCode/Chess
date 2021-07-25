@@ -71,8 +71,7 @@ public class StartController {
 
 	@FXML
 	private void cancelButtonAction(ActionEvent event) {
-		Stage stage = (Stage) cancelButton.getScene().getWindow();
-		stage.close();
+		((Stage) cancelButton.getScene().getWindow()).close();;
 	}
 
 	@FXML
