@@ -275,6 +275,7 @@ public class BoardHandler {
         controller.timer1.setVisible(false);
         controller.timer2.setVisible(false);
         getTimers().ifPresent(t -> t.stop());
+        controller.validationMessages.setText("");
         controller.evaluationMessages.setText("");
     }
 
