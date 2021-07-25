@@ -280,18 +280,18 @@ public class BoardHandler {
     }
 
     /*
-     * sets the board to the game is ended position.
+     * sets the view to "the game has ended" position.
      * Activates the start button.
      */
     public void endGame() {
         removeDragAndDrop();
         controller.getViewListeners().remove();
         controller.getModelListeners().remove();
-        handleButtons(controller.start);
         getTimers().ifPresent(t -> t.stop());
         setColor.accept(controller.player1Labels, BLACK);
         setColor.accept(controller.player2Labels, BLACK);
         controller.validationMessages.setText("");
+        handleButtons(controller.start);
     }
 
     /*
@@ -313,7 +313,6 @@ public class BoardHandler {
     /*
      * removes the drag&drop handlers.
      */
-
     public void removeDragAndDrop() {
         board.getChildren().forEach(c ->  {
             ((Labeled) c).setOnDragDetected(null);
@@ -360,7 +359,7 @@ public class BoardHandler {
     }
 
     //GETTERS & SETTERS
-     public Background getNeutralBg() {
+    public Background getNeutralBg() {
         return NEUTRAL_BG;
     }
 
