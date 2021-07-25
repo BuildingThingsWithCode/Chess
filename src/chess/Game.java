@@ -119,7 +119,7 @@ public class Game {
 				.apply(this, m));
 	};
 
-	//Moet volgens mij een private non-static method zijn. Wprdt enkel in Game gebruikt.
+	////adding the validation of the move to observable list.
 	private Consumer<Move> validateMove = m -> {
 		validationResult.add(MoveValidator
 				.legalForPlayer()
