@@ -83,10 +83,10 @@ public class Pawn extends Piece {
 	 * return true if the move is a valid en passant move,
 	 */
 	public boolean checkForEnPassant(Game g, Move m) {
-		int rowForEnPassant 	= getColor() == WHITE ?  5 :  2;
-		int oneRowBehind 		= getColor() == WHITE ? -1 :  1;
-		int lastMoveWasTwoRows 	= getColor() == WHITE ? -2 :  2;
-		int sameColumn 			= 0;
+		int rowForEnPassant    = getColor() == WHITE ?  5 :  2;
+		int oneRowBehind       = getColor() == WHITE ? -1 :  1;
+		int lastMoveWasTwoRows = getColor() == WHITE ? -2 :  2;
+		int sameColumn         = 0;
 		Optional<GameState> gs = g.getLastState();
 		//no previous gameState means first move. En passant not possible on first move.
 		return gs.isPresent() 
