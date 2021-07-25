@@ -350,11 +350,9 @@ public class BoardHandler {
                         }
                     }
                     board.getChildren()
-                    .forEach(c -> { c.setEffect(null);
-                    if ((GridPane.getRowIndex(c) + getColumnIndex(c)) %2 == 0) {
-                        ((Region) c).setBackground(LIGHT_TILE);
-                    }
-                    else ((Region) c).setBackground(DARK_TILE);
+                    .forEach(c -> { 
+                        c.setEffect(null);
+                        ((Region) c).setBackground(((GridPane.getRowIndex(c) + getColumnIndex(c)) %2 == 0) ? LIGHT_TILE : DARK_TILE);
                     });
                 }
             }
