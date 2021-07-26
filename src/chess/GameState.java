@@ -6,14 +6,14 @@ import chess.pieces.Piece;
 
 public class GameState {
 	
-	private Field[][]   boardState;
+	private String      gameState;
 	private Move        lastMove;
 	private List<Piece> takenPieces;
 
 	//CONSTRUCTOR
-	public GameState(Field[][] boardState, Move lastMoveMade, List<Piece> takenPieces) {
-		this.boardState  = boardState;
-		this.lastMove	 = lastMoveMade;
+	public GameState(String gameState, Move lastMoveMade, List<Piece> takenPieces) {
+		this.gameState   = gameState;
+		this.lastMove    = lastMoveMade;
 		this.takenPieces = takenPieces;
 	}
 
@@ -42,15 +42,10 @@ public class GameState {
 		return takenPieces;
 	}
 
-	public Field[][] getBoardState() {
-		return boardState;
+	public String getGameState() {
+		return gameState;
 	}
 
-	public void setBoardState(Field[][] boardState) {
-		this.boardState = boardState;
-	}
-
-	
 }
 
 
