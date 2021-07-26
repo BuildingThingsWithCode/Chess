@@ -57,8 +57,4 @@ public class Board {
 		playingField[x][y].setPiece(piece);
 	}
 
-	public Field[][] getCopyOfBoardState() {
-		return Arrays.stream(playingField).map(a ->  Arrays.copyOf(a, a.length)).toArray(Field[][]::new);
-	}
-
 }
