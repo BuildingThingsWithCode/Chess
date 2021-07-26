@@ -33,6 +33,9 @@ class BoardTest {
 
 	@Test
 	void testClear() {
+	    assertEquals(true, board.getPiece(1, 6).isPresent());
+        assertEquals(true, board.getPiece(6, 6).isPresent());
+        assertEquals(true, board.getPiece(7, 3).isPresent());
 		board.clear();
 		assertEquals(false, board.getPiece(1, 6).isPresent());
 		assertEquals(false, board.getPiece(6, 6).isPresent());
