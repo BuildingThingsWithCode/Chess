@@ -93,7 +93,7 @@ public class Controller extends Application{
 	}
 
 	public Consumer<EvaluationResult> handleEvaluationResult = result -> {
-		String color	     = activePlayer == WHITE ? "White" : "Black";
+		String color	     = activePlayer == WHITE ? "Black" :"White";
 		String draw 	     = "\n"+" Game ends in a draw.";
 		String rule 	     = "\n"+"Both players can claim a draw because of the "+"\n";
 		String reason	     = game.threeFoldRepetition.get() == true ? THREE_FOLD_REPETION_RULE.toString() : FIFTY_MOVES_RULE.toString();
@@ -101,7 +101,7 @@ public class Controller extends Application{
 		String loser	     = getActivePlayer() == WHITE ? "White" : "Black";
 		String outOfTimeDraw = loser+" is out of time."+"\n"+winner+" has insufficient material."+"\n"+" Game ends in a draw.";
 		String outOfTimeWin  = loser+" is out of time."+"\n"+winner+" wins.";
-		String checkmate     = "\n"+color+" wins.";
+		String checkmate     = "\n"+ color +" wins.";
 		String claim 	     = reason+" Draw has been claimed.";
 		EndedByUserStage endedByUserStage;
 		switch (result) {
