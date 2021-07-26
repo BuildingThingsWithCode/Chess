@@ -42,7 +42,6 @@ import chess.pieces.Knight;
 import chess.pieces.Pawn;
 import chess.pieces.Piece;
 import chess.pieces.Rook;
-import chess.util.FENBuilder;
 import chess.util.GameEvaluator;
 import chess.util.GameEvaluator.EvaluationResult;
 import chess.util.MoveValidator;
@@ -55,23 +54,23 @@ import javafx.scene.paint.Color;
 public class Game {
 
     //FIELDS
-    private Board  				 board;
-    private Player 				 white;
-    private Player 				 black;
-    private Move				 lastMove;
-    private Player				 activePlayer; 
-    private List<GameState> 		 gameStates 	       = new ArrayList<GameState>();
-    private List<Piece>	      	         takenPieces 	       = new ArrayList<Piece>();
-    private List<String>		         threeFoldRepetionList = new ArrayList<String>();
-    private ObservableMap<String,Move>	 extraActionRequired   = FXCollections.observableMap(new HashMap<String,Move>());
+    private Board                            board;
+    private Player                           white;
+    private Player                           black;
+    private Move                             lastMove;
+    private Player                           activePlayer; 
+    private List<GameState>                  gameStates            = new ArrayList<GameState>();
+    private List<Piece>                      takenPieces           = new ArrayList<Piece>();
+    private List<String>                     threeFoldRepetionList = new ArrayList<String>();
+    private ObservableMap<String,Move>       extraActionRequired   = FXCollections.observableMap(new HashMap<String,Move>());
     private ObservableList<ValidationResult> validationResult      = FXCollections.observableList(new ArrayList<ValidationResult>()); 
     private ObservableList<EvaluationResult> evaluationResult      = FXCollections.observableList(new ArrayList<EvaluationResult>());
-    private int 				 halfMove 	       = 0;
+    private int                              halfMove              = 0;
     //full move starts at 1.
-    private int 				 fullMove	       = 1;
-    private String 				 enpassantField        = " -";
-    private final int 			 ENPASSANT_ROW_WHITE   = 3;
-    private final int 			 ENPASSANT_ROW_BLACK   = 6;
+    private int                              fullMove              = 1;
+    private String                           enpassantField        = " -";
+    private final int                        ENPASSANT_ROW_WHITE   = 3;
+    private final int                        ENPASSANT_ROW_BLACK   = 6;
 
     //CONSTRUCTOR
     public Game (Board board, Player player1, Player player2) {
