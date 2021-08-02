@@ -1,4 +1,4 @@
 # Chess
 A two player chess program with Java and JavaFX.
 
-![repoCard](https://user-images.githubusercontent.com/87835378/127415438-35e1297c-6e95-4762-99e8-ddc6db12d4c2.png)
+[![Application Overview (Youtube)](https://img.youtube.com/vi/4ueerDilA-E/maxresdefault.jpg)](https://youtu.be/4ueerDilA-E)
