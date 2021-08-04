@@ -1,11 +1,10 @@
 # Chess
-A two player chess program with Java and JavaFX.
+A two player chess program with Java and JavaFX.  
 Fully resizable. The board keeps its aspect ratio.
 Enforces all chess moves and rules: castling, en passant, promotion, check, checkmate,
-stalemate, 3-fold repetition rule, 50-moves rule, out of time, insufficient material.
-Model written in Java
-Unit tests for the model
-View in Java en JavaFx, with FXML and CSS.
+stalemate, 3-fold repetition rule, 50-moves rule, out of time, insufficient material.  
+Model written in Java. Unit tests for the model.  
+View in Java en JavaFx, with FXML and CSS.  
 Will not allow illegal moves and provides a reason why the move was not allowed.
 
 [Check it out (Youtube)](https://youtu.be/4ueerDilA-E)
