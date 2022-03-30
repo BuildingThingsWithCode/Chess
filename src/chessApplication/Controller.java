@@ -41,19 +41,19 @@ public class Controller extends Application{
 	private IntegerProperty    secondsProperty1 = new SimpleIntegerProperty(null, "secondsProperty1", 60);
 	private IntegerProperty	   secondsProperty2 = new SimpleIntegerProperty(null, "secondsProperty2", 60);
 	private SecondStage 	   secondStage	    = new SecondStage();
-	private Color 		   activePlayer     = WHITE;
+	private Color 		       activePlayer     = WHITE;
 	private List<Label> 	   timeLabels1;
 	private List<Label> 	   timeLabels2;
 	private BoardHandler 	   boardHandler;
-	private Game 		   game;
-	private Sounds 		   sounds;
+	private Game 		       game;
+	private Sounds 		       sounds;
 	private ViewListeners 	   viewListeners;
 	private ModelListeners 	   modelListeners;
 
 	@FXML BorderPane      root;
-	@FXML HBox 	      top;
-	@FXML VBox 	      left;
-	@FXML VBox	      right;
+	@FXML HBox 	          top;
+	@FXML VBox 	          left;
+	@FXML VBox	          right;
 	@FXML TilePane	      captured;
 	@FXML public GridPane board;
 	@FXML public Label    seconds1;

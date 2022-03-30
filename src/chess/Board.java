@@ -1,6 +1,6 @@
 package chess;
 
-import static chess.util.Converter.xyModelPiece;
+import static chess.util.Converter.modelPieceAtIndexes;
 
 import java.util.Arrays;
 import java.util.Optional;
@@ -25,7 +25,7 @@ public class Board {
 		for(int x=0; x<8; x++){
 			for(int y=0; y<8; y++){
 				playingField[x][y] = new Field (x, y);
-				setPiece(x, y, xyModelPiece.apply(x, y).orElse(null));
+				setPiece(x, y, modelPieceAtIndexes.apply(x, y).orElse(null));
 			}
 		}
 	}
@@ -36,7 +36,7 @@ public class Board {
 	public void clear() {
 		Stream.of(playingField)																				
 		.flatMap(Arrays::stream) 															
-		.filter(f -> f.getPiece().isPresent())		
+		.filter(Field::piecePresent)		
 		.forEach(f -> f.setPiece(null));
 	}
 

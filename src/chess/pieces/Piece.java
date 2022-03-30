@@ -4,7 +4,7 @@ import chess.Move;
 import javafx.scene.paint.Color;
 
 public abstract class Piece {
-	private Color 	color;
+	private final Color color;
 	private boolean hasMoved = false;
 
 	

@@ -4,8 +4,8 @@ import static chess.util.Converter.getAllWhiteViewPieces;
 import static chess.util.Converter.getModelPiece;
 import static chess.util.Converter.getOneViewPiece;
 import static chess.util.Converter.getPathToImage;
-import static chess.util.Converter.xyModelPiece;
-import static chess.util.Converter.xyViewPiece;
+import static chess.util.Converter.modelPieceAtIndexes;
+import static chess.util.Converter.viewPieceAtIndexes;
 import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,19 +23,19 @@ import chess.util.Converter;
 public class ConverterTest {
 	
 	@Test
-	void testXyViewPiece() {
-		assertEquals("♖", xyViewPiece.apply(0, 0).get());
-		assertEquals("♝", xyViewPiece.apply(7, 5).get());
-		assertEquals(false, xyViewPiece.apply(4, 4).isPresent());
+	void testViewPieceAtIndexes() {
+		assertEquals("♖", viewPieceAtIndexes.apply(0, 0).get());
+		assertEquals("♝", viewPieceAtIndexes.apply(7, 5).get());
+		assertEquals(false, viewPieceAtIndexes.apply(4, 4).isPresent());
 	}
 	
 	@Test
-	void testXyModelPiece() {
-		assertEquals(WHITE, xyModelPiece.apply(0, 5).get().getColor());
-		assertEquals(true, xyModelPiece.apply(0, 5).get() instanceof Bishop);
-		assertEquals(BLACK, xyModelPiece.apply(6, 5).get().getColor());
-		assertEquals(true, xyModelPiece.apply(6, 5).get() instanceof Pawn);
-		assertEquals(false, xyModelPiece.apply(2, 3).isPresent());
+	void testModelPieceAtIndexes() {
+		assertEquals(WHITE, modelPieceAtIndexes.apply(0, 5).get().getColor());
+		assertEquals(true, modelPieceAtIndexes.apply(0, 5).get() instanceof Bishop);
+		assertEquals(BLACK, modelPieceAtIndexes.apply(6, 5).get().getColor());
+		assertEquals(true, modelPieceAtIndexes.apply(6, 5).get() instanceof Pawn);
+		assertEquals(false, modelPieceAtIndexes.apply(2, 3).isPresent());
 	}
 	
 	@Test

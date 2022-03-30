@@ -1,5 +1,8 @@
 package chess;
 
+import static chess.util.Action.CASTLING;
+import static chess.util.Action.ENPASSANT;
+import static chess.util.Action.PROMOTION;
 import static chess.util.FENBuilder.gameToFEN;
 import static chess.util.FENBuilder.gameToFEN3FoldRule;
 import static chess.util.GameEvaluator.check;
@@ -42,6 +45,7 @@ import chess.pieces.Knight;
 import chess.pieces.Pawn;
 import chess.pieces.Piece;
 import chess.pieces.Rook;
+import chess.util.Action;
 import chess.util.GameEvaluator;
 import chess.util.GameEvaluator.EvaluationResult;
 import chess.util.MoveValidator;
@@ -62,7 +66,7 @@ public class Game {
     private List<GameState>                  gameStates            = new ArrayList<GameState>();
     private List<Piece>                      takenPieces           = new ArrayList<Piece>();
     private List<String>                     threeFoldRepetionList = new ArrayList<String>();
-    private ObservableMap<String,Move>       extraActionRequired   = FXCollections.observableMap(new HashMap<String,Move>());
+    private ObservableMap<Enum<Action>, Move>action                = FXCollections.observableMap(new HashMap<Enum<Action>,Move>());
     private ObservableList<ValidationResult> validationResult      = FXCollections.observableList(new ArrayList<ValidationResult>()); 
     private ObservableList<EvaluationResult> evaluationResult      = FXCollections.observableList(new ArrayList<EvaluationResult>());
     private int                              halfMove              = 0;
@@ -105,7 +109,7 @@ public class Game {
         setActivePlayer(move.getColor() == WHITE ? black : white);
     }
 
-    //adding the evaluation of the game to observable list.
+    //Evaluate game and add this evaluation to observable list.
     private Consumer<Move> evaluateGame = m -> {
         evaluationResult.add(GameEvaluator
                 .checkmate()
@@ -119,7 +123,7 @@ public class Game {
                 .apply(this, m));
     };
 
-    //adding the validation of the move to observable list.
+    //check the validity of the move and add the result to observable list.
     private Consumer<Move> validateMove = m -> {
         validationResult.add(MoveValidator
                 .legalForPlayer()
@@ -370,7 +374,7 @@ public class Game {
                 getField(m.getEndX() + oneRow, m.getEndY()).setPiece(null);
             });
             Move move = new Move(getField(m.getEndX() + oneRow, m.getEndY()),getField(m.getEndX() + oneRow, m.getEndY()));
-            extraActionRequired.put("enpassant", move);
+            action.put(ENPASSANT, move);
         }
     };
 
@@ -395,7 +399,7 @@ public class Game {
                         execute(move);
                         halfMove++;
             }
-            extraActionRequired.put("castling", move);
+            action.put(CASTLING, move);
         }
     };
 
@@ -412,7 +416,7 @@ public class Game {
      * checks if a pawn reaches a promotion position and sets ObjectProperty<Move> extraMove.
      */
     private Consumer<Move> promotion = m -> {
-        if (isPromotion.test(m)) extraActionRequired.put("promotion", m);
+        if (isPromotion.test(m)) action.put(PROMOTION, m);
     };
 
     /*
@@ -514,8 +518,8 @@ public class Game {
         return enpassantField;
     }
 
-    public  ObservableMap<String, Move> getExtraActionRequired() {
-        return extraActionRequired;
+    public  ObservableMap<Enum<Action>, Move> getAction() {
+        return action;
     }
 
     public ObservableList<EvaluationResult> getEvaluationResult() {

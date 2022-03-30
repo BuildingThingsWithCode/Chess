@@ -1,5 +1,6 @@
 package chess.pieces;
 
+
 import static chess.util.Movement.down;
 import static chess.util.Movement.noColumns;
 import static chess.util.Movement.oneColumn;

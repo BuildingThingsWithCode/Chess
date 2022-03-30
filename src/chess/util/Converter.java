@@ -60,19 +60,6 @@ public final class Converter {
 				Converter.class.getClassLoader().getResource("resources/images/big/blackPawn2.png").toString()));
 	}
 
-
-	static {
-		EMPTY_FIELDS.put(8,"00000000");
-		EMPTY_FIELDS.put(7, "0000000");
-		EMPTY_FIELDS.put(6,  "000000");
-		EMPTY_FIELDS.put(5,   "00000");
-		EMPTY_FIELDS.put(4,    "0000");
-		EMPTY_FIELDS.put(3,     "000");
-		EMPTY_FIELDS.put(2,      "00");
-		EMPTY_FIELDS.put(1,       "0");
-
-	}
-	
 	static {
 		PIECES.put(new int[][] {{0,3}},	       "♔");
 		PIECES.put(new int[][] {{7,3}},	       "♚");
@@ -89,7 +76,7 @@ public final class Converter {
 	/*
 	 * returns an Optional containing the symbol for the piece to be used in the view or no value, given a row - and column index.
 	 */
-	public static BiFunction<Integer, Integer, Optional<String>> xyViewPiece = (rowIndex, columnIndex) -> {
+	public static BiFunction<Integer, Integer, Optional<String>> viewPieceAtIndexes = (rowIndex, columnIndex) -> {
 		if (rowIndex == 1) return Optional.of("♙");
 		if (rowIndex == 6) return Optional.of("♟");
 		return PIECES.entrySet()
@@ -102,7 +89,7 @@ public final class Converter {
 	/*
 	 * returns an Optional containing the piece to be used in the model or no value, given a row - and column index.
 	 */
-	public static BiFunction<Integer, Integer, Optional<Piece>> xyModelPiece = (rowIndex, columnIndex) -> {
+	public static BiFunction<Integer, Integer, Optional<Piece>> modelPieceAtIndexes = (rowIndex, columnIndex) -> {
 		if (rowIndex == 1)					     return Optional.of(new Pawn(WHITE));
 		if (rowIndex == 6)					     return Optional.of(new Pawn(BLACK));
 		if (rowIndex == 0 && columnIndex == 3)			     return Optional.of(new King(WHITE));
@@ -119,9 +106,9 @@ public final class Converter {
 	};
 
 	/*
-	 * help method to get what we need from FenMap. Values are: 0 (FEN notation), 1 (symbol for
-	 * the piece in the view), 2 (path to image used in the DragView when moving pieces). The key
-	 * is a Piece for the model.
+	 * help method to get what we need from FenMap. The predicate filters the values. Values are: 0 (FEN notation)
+	 * 1 (symbol for the piece in the view), 2 (path to image used in the DragView when moving pieces). The key
+	 * of FenMap is a piece for the model.
 	 */
 	public static List<String> getValues(Predicate<Entry<Piece, List<String>>> predicate, int value){
 		return FEN_MAP

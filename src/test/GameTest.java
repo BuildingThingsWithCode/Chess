@@ -106,7 +106,7 @@ class GameTest {
 		assertEquals(true, board.getPiece(3, 0).get().checkMove(game, move2));
 		assertEquals(1, attackingMoves.apply(game, board.getField(0, 3)).size());
 		assertEquals(true, game.checkmate.test(move));
-		//setting the white horse in a position that it can make a move to black the check and 
+		//setting the white horse in a position that it can make a move to block check and 
 		//see if checkmate is false
 		board.setPiece(4, 2, board.getPiece(0, 1).get());
 		board.setPiece(0, 1, null);

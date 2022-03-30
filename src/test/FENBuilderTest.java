@@ -11,7 +11,7 @@ import chess.Board;
 import chess.Game;
 import chess.Move;
 import chess.Player;
-import chess.util.FENBuilder;
+
 
 class FENBuilderTest {
 	

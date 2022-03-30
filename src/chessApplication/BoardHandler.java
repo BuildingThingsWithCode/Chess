@@ -1,8 +1,11 @@
 package chessApplication;
 
 
+import static chess.util.Action.CASTLING;
+import static chess.util.Action.ENPASSANT;
+import static chess.util.Action.PROMOTION;
 import static chess.util.Converter.getModelPiece;
-import static chess.util.Converter.xyViewPiece;
+import static chess.util.Converter.viewPieceAtIndexes;
 import static chessApplication.DragAndDropHandler.getCapturedPieces;
 import static chessApplication.DragAndDropHandler.setOnDragDetected;
 import static chessApplication.DragAndDropHandler.setOnDragDone;
@@ -29,6 +32,7 @@ import java.util.function.Function;
 
 import chess.Field;
 import chess.Move;
+import chess.util.Action;
 import chessApplication.promotion.PromotionStage;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
@@ -137,12 +141,10 @@ public class BoardHandler {
                     .get(i))
             .setText(TOP_MARKERS.get(translate.apply(placement, i)));
         }
-        //place the pieces.
+        //place the pieces or nothing if an empty field.
         board.getChildren()
-        .forEach(c -> {
-            ((Labeled) c)
-            .setText(xyViewPiece
-                    .apply(translate.apply(placement, getRowIndex(c)), translate.apply(placement, getColumnIndex(c))).orElse(""));
+        .forEach(c -> {((Labeled) c).setText(viewPieceAtIndexes.
+                apply(translate.apply(placement, getRowIndex(c)), translate.apply(placement, getColumnIndex(c))).orElse(""));
         });
     }
 
@@ -217,9 +219,9 @@ public class BoardHandler {
      * For castling, this is placing the rook and for en passant, it's removing the captured pawn.
      * For promotion it's showing the promotion stage, so the user can choose a piece for promotion.
      */
-    public void executeExtraAction(String key,Move move) {
+    public void executeAction(Enum<Action> action, Move move) {
         //enpassant  contains a move with the same field for start, as for end. This is the field containing the pawn to be taken.
-        if (key.equals("enpassant")) {
+        if (action == ENPASSANT) {
             translatedMove = translateMove.apply(move);
             board.getChildren().forEach(c -> {
                 if (getRowIndex(c) == translatedMove.getStartX() && getColumnIndex(c) == translatedMove.getStartY()) {
@@ -229,7 +231,7 @@ public class BoardHandler {
             });
         }
         //castling contains the move the Rook has to make. We move rook from start field to end field.
-        if (key.equals("castling")) {
+        if (action == CASTLING) {
             translatedMove = translateMove.apply(move);
             String piece = board.getChildren()
                     .stream()
@@ -248,7 +250,7 @@ public class BoardHandler {
         }
         //promotion contains the move made by the pawn to the last row. We get the promotion fields of the model and the view.
         //We show the promotion stage to the user, who can select a piece for promotion.
-        if (key.equals("promotion")) {
+        if (action == PROMOTION) {
             modelField = move.getEnd();
             translatedMove = translateMove.apply(move);
             viewField = (Label) board.getChildren()

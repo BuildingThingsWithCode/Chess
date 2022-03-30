@@ -18,8 +18,8 @@ public class EndedByUserStage {
 	private SecondStage 	      secondStage;
 	private EvaluationResult      result;
 	private EndedByUserController endedByUserController;
-	private String 		      activePlayer;
-	private String 		      otherPlayer;
+	private String 		          activePlayer;
+	private String 		          otherPlayer;
 	
 	//CONSTRUCTOR
 	public EndedByUserStage(Controller controller, EvaluationResult result) {
