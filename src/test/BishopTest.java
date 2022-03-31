@@ -17,7 +17,7 @@ class BishopTest {
 	int x2 = 4;
 	int y2 = 0;
 	Game game;
-	Bishop 	  bishop 		= new Bishop(WHITE);
+	Bishop 	  bishop 	= new Bishop(WHITE);
 	Field 	  startposition = new Field(1, 3);
 	Field 	  endposition   = new Field(4, 0);
 	Field 	  endposition2  = new Field(2,1);
