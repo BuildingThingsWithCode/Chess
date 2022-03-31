@@ -26,23 +26,24 @@ public final class FENBuilder {
      * returns true if field contains a piece that hasn't moved.
      */
     public static Predicate<Field> hasNotMoved = f -> {
-        return	f.getPiece().isPresent() && !f.getPiece().get().hasMoved();
+        return	f.getPiece().isPresent() 
+                && !f.getPiece().get().hasMoved();
     };
 
     /*
      * returns true if field contains a rook eligible to castle.
      */
     public static Predicate<Field> rookOKToCastle = f -> {
-        return hasNotMoved.test(f)
-                && f.getPiece().get() instanceof Rook;
+        return f.getPiece().get() instanceof Rook
+                && hasNotMoved.test(f);
     };
 
     /*
      * returns true if field contains a king eligible to castle.
      */
     public static Predicate<Field> kingOKToCastle = f -> {
-        return hasNotMoved.test(f)
-                && f.getPiece().get() instanceof King;
+        return f.getPiece().get() instanceof King
+                && hasNotMoved.test(f);
     };
 
     /*
