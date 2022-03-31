@@ -23,7 +23,7 @@ public class TimeListener implements ChangeListener<Number>{
 		this.secondsProperty = secondsProperty;
 		this.seconds	     = timeLabels.get(0);
 		this.minutes	     = timeLabels.get(1);
-		this.hours	         = timeLabels.get(2);
+		this.hours	     = timeLabels.get(2);
 		secondsProperty.addListener(this);
 	}
 	
