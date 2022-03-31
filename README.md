@@ -1,6 +1,6 @@
 # Chess
 A two player chess program with Java and JavaFX.  
-Fully resizable. The board keeps its aspect ratio.
+Fully resizable. The board keeps its aspect ratio.   
 Enforces all chess moves and rules:
 - castling
 - en passant
@@ -13,8 +13,8 @@ Enforces all chess moves and rules:
 - out of time
 - insufficient material.  
 
-Model written in Java. Unit tests for the model.  
-View in Java en JavaFx, with FXML and CSS.  
+The model is written in Java and covered by Unit tests.  
+The view is written in Java and JavaFx, with FXML and CSS.  
 
 [Have a look (Youtube)](https://youtu.be/4ueerDilA-E).
 
