@@ -11,11 +11,11 @@ import javafx.scene.control.Label;
 
 public class TimeListener implements ChangeListener<Number>{
 
-	private Controller	controller;
+	private Controller	    controller;
 	private IntegerProperty secondsProperty;
-	private Label		seconds;
-	private Label		minutes;
-	private Label		hours;
+	private Label		    seconds;
+	private Label		    minutes;
+	private Label		    hours;
 	
 	//CONSTRUCTOR
 	public TimeListener(Controller controller, IntegerProperty secondsProperty, List<Label> timeLabels) {
@@ -23,7 +23,7 @@ public class TimeListener implements ChangeListener<Number>{
 		this.secondsProperty = secondsProperty;
 		this.seconds	     = timeLabels.get(0);
 		this.minutes	     = timeLabels.get(1);
-		this.hours	     = timeLabels.get(2);
+		this.hours	         = timeLabels.get(2);
 		secondsProperty.addListener(this);
 	}
 	
@@ -39,11 +39,12 @@ public class TimeListener implements ChangeListener<Number>{
 		}
 		if (newValue.intValue() == 59 && parseInt(hours) > 0 && parseInt(minutes) == 0) {
 			hours.setText(minusOne(hours));
+			minutes.setText("60");
 		}
 		if (newValue.intValue() == 59 && parseInt(minutes) > 0) {
 			minutes.setText(minusOne(minutes));
 		}
-		if (newValue.intValue() == 0 && parseInt(minutes) == 0 && parseInt(hours) == 0) {
+		if (newValue.intValue() == 0 && parseInt(hours) == 0 && parseInt(minutes) == 0 ) {
 			controller.handleEvaluationResult.accept(OUT_OF_TIME);
 		}
 	}
