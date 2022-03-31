@@ -156,7 +156,7 @@ public final class FENBuilder {
         StringBuilder consecZeros = new StringBuilder(emptyFields);
         for (int j=0; j<emptyFields; j++) consecZeros.append("0");
         //indexOf changes after delete, need int index to persist correct index for insert.
-        while (builder.indexOf(consecZeros.toString()) >0) {
+        while (builder.indexOf(consecZeros.toString()) > 0) {
             int index = builder.indexOf(consecZeros.toString());
             builder.delete(index, index + emptyFields);
             builder.insert(index, emptyFields);
