@@ -103,19 +103,19 @@ public class BoardHandler {
         controller.evaluationMessages.wrappingWidthProperty().bind(controller.right.prefWidthProperty().subtract(20.0));
         //adjust font size, so the size of the pieces gets bigger when the board gets bigger and smaller when the board gets smaller.
         minOfWidthAndHeight.addListener((ChangeListener<Number>) (ObservableValue, oldValue, newValue) -> {
-            BiConsumer<Integer, Integer> adjustFontSize = (threshold, fontsize) -> {
-                if (newValue.intValue() >= threshold) {
-                    board.getChildren().forEach(c -> ((Region) c).styleProperty().set("-fx-font-size:"+fontsize+";"));
-                }
-            };
-            adjustFontSize.accept(0,  42);
-            adjustFontSize.accept(75, 48);
-            adjustFontSize.accept(85, 54);
-            adjustFontSize.accept(95, 60);
+            board.getChildren().forEach(c -> ((Region) c).styleProperty().set("-fx-font-size:"+adjustFontSize(newValue.intValue())+";"));
         });
 
     }
-
+    
+    public int adjustFontSize (int newValue) {
+        int fontSize = 42;
+        if (75 < newValue && newValue <= 85) fontSize = 48;
+        else if (85 < newValue && newValue <= 95) fontSize = 54;
+        else if (95 < newValue) fontSize = 60;
+        return fontSize;
+    }
+    
     private void setBackgroundImage() {
         controller.right.setBackground(NEUTRAL_BG);
     }
