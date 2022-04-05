@@ -14,7 +14,7 @@ Enforces all chess moves and rules:
 - insufficient material.  
 
 The model is written in Java and covered by Unit tests.  
-The view is written in Java and JavaFx, with FXML and CSS.  
+The view is written in Java and JavaFX, with FXML and CSS.  
 
 [Have a look (Youtube)](https://youtu.be/4ueerDilA-E).
 
