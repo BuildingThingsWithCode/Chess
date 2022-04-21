@@ -13,11 +13,11 @@ import javafx.scene.control.Labeled;
 
 public class ViewListeners {
 
-	private Controller		   controller;
-	private BoardHandler		   boardHandler;
-	private Move			   modelMove;
+	private Controller                 controller;
+	private BoardHandler               boardHandler;
+	private Move                       modelMove;
 	private ListChangeListener<String> capturedPieces;
-	private ChangeListener<Move> 	   move;
+	private ChangeListener<Move>       move;
 	private ChangeListener<Boolean>    moveLegal;
 	
 	//CONSTRUCTOR

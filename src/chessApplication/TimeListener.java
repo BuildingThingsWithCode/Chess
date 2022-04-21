@@ -11,19 +11,19 @@ import javafx.scene.control.Label;
 
 public class TimeListener implements ChangeListener<Number>{
 
-	private Controller	    controller;
+	private Controller      controller;
 	private IntegerProperty secondsProperty;
-	private Label		    seconds;
-	private Label		    minutes;
-	private Label		    hours;
+	private Label           seconds;
+	private Label           minutes;
+	private Label           hours;
 	
 	//CONSTRUCTOR
 	public TimeListener(Controller controller, IntegerProperty secondsProperty, List<Label> timeLabels) {
-		this.controller	     = controller;
+		this.controller      = controller;
 		this.secondsProperty = secondsProperty;
-		this.seconds	     = timeLabels.get(0);
-		this.minutes	     = timeLabels.get(1);
-		this.hours	     = timeLabels.get(2);
+		this.seconds         = timeLabels.get(0);
+		this.minutes         = timeLabels.get(1);
+		this.hours           = timeLabels.get(2);
 		secondsProperty.addListener(this);
 	}
 	

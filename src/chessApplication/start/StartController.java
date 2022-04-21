@@ -19,22 +19,22 @@ import javafx.stage.Stage;
 public class StartController {
 
 	private ObservableBooleanValue accepted   = new SimpleBooleanProperty(false);
-	private String 		       playerWhite;
-	private String                 playerBlack;
+	private String playerWhite;
+	private String playerBlack;
 	
-	@FXML VBox 		       root;
-	@FXML Button 		       cancelButton;
-	@FXML Button 		       acceptButton;
-	@FXML Label 		       hoursLabel;
-	@FXML Label 		       minutesLabel;
-	@FXML TextField 	       hoursField;
-	@FXML TextField 	       minutesField;
-	@FXML TextField 	       player1Field;
-	@FXML TextField 	       player2Field;
-	@FXML CheckBox 		       time;
-	@FXML ChoiceBox<String>        colorPlayer1;
-	@FXML ChoiceBox<String>        colorPlayer2;
-	@FXML ChoiceBox<String>        colorPiecesAtBottom;
+	@FXML VBox              root;
+	@FXML Button            cancelButton;
+	@FXML Button            acceptButton;
+	@FXML Label             hoursLabel;
+	@FXML Label             minutesLabel;
+	@FXML TextField         hoursField;
+	@FXML TextField         minutesField;
+	@FXML TextField         player1Field;
+	@FXML TextField         player2Field;
+	@FXML CheckBox          time;
+	@FXML ChoiceBox<String> colorPlayer1;
+	@FXML ChoiceBox<String> colorPlayer2;
+	@FXML ChoiceBox<String> colorPiecesAtBottom;
 	
 	
 	//METHODS
