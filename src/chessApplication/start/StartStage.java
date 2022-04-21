@@ -31,7 +31,7 @@ public class StartStage {
 	//CONSTRUCTOR
 	public StartStage(Controller controller, ActionEvent event) {
 		this.controller   = controller;
-		this.event 	  = event;
+		this.event        = event;
 		this.secondStage  = controller.getSecondStage();
 		this.boardHandler = controller.getBoardHandler();
 
