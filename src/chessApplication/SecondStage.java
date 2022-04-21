@@ -10,9 +10,9 @@ import javafx.stage.WindowEvent;
 
 public class SecondStage extends Stage {
 
-	private final double width             = 400.0;
-	private final double height            = 217.0;
-	private boolean      promotionSelected = true;	
+	private final double width        = 400.0;
+	private final double height       = 217.0;
+	private boolean promotionSelected = true;	
 	
 	
 	//CONSTRUCTOR
