@@ -15,7 +15,7 @@ class KnightTest {
 	
 	Game game;
 	Knight knight     = new Knight(BLACK);
-	Pawn   pawn		  = new Pawn(BLACK);
+	Pawn   pawn       = new Pawn(BLACK);
 	Field  startField = new Field(1, 3);
 	Field  endField   = new Field(5, 7);
 	Field  endField2  = new Field(0, 5);

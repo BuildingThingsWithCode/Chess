@@ -16,7 +16,7 @@ import chess.Player;
 class FENBuilderTest {
 	
 	Board board = new Board();
-	Game game = new Game(board, new Player("James", WHITE), new Player("Johan", BLACK));
+	Game game   = new Game(board, new Player("James", WHITE), new Player("Johan", BLACK));
 	/*
 	 * from wikipedia page about FEN notation:
 	 * The following example is from the FEN specification:[8]

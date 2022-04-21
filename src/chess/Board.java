@@ -34,9 +34,9 @@ public class Board {
 	 * clears all the pieces from the board.
 	 */
 	public void clear() {
-		Stream.of(playingField)																				
-		.flatMap(Arrays::stream) 															
-		.filter(Field::piecePresent)		
+		Stream.of(playingField)
+		.flatMap(Arrays::stream) 
+		.filter(Field::piecePresent)
 		.forEach(f -> f.setPiece(null));
 	}
 

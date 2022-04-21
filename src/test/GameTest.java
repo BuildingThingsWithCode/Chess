@@ -128,11 +128,11 @@ class GameTest {
 	@Test
 	void testInsufficientMaterialColor() {
 		board.clear();
-		King k   = new King(BLACK);
-		King K   = new King(WHITE);
-		Queen Q  = new Queen(WHITE);
+		King   k = new King(BLACK);
+		King   K = new King(WHITE);
+		Queen  Q = new Queen(WHITE);
 		Bishop B = new Bishop(WHITE);
-		Pawn p   = new Pawn(BLACK);
+		Pawn   p = new Pawn(BLACK);
 		board.setPiece(0, 4, K);
 		board.setPiece(1, 5, B);
 		board.setPiece(6, 4, k);

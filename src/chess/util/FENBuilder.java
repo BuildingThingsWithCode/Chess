@@ -34,16 +34,14 @@ public final class FENBuilder {
      * returns true if field contains a rook eligible to castle.
      */
     public static Predicate<Field> rookOKToCastle = f -> {
-        return f.getPiece().get() instanceof Rook
-                && hasNotMoved.test(f);
+        return hasNotMoved.test(f) && f.getPiece().get() instanceof Rook;
     };
 
     /*
      * returns true if field contains a king eligible to castle.
      */
     public static Predicate<Field> kingOKToCastle = f -> {
-        return f.getPiece().get() instanceof King
-                && hasNotMoved.test(f);
+        return hasNotMoved.test(f) && f.getPiece().get() instanceof King;
     };
 
     /*

@@ -15,10 +15,10 @@ import chess.pieces.King;
 import chess.pieces.Queen;
 
 class KingTest {
-	private Board  board 	  = new Board();
-	private Player piet 	  = new Player("Piet", BLACK);
-	private Player jan  	  = new Player("Jan", WHITE); 
-	private Game   game   	  = new Game(board, jan, piet);
+	private Board  board      = new Board();
+	private Player piet       = new Player("Piet", BLACK);
+	private Player jan        = new Player("Jan", WHITE); 
+	private Game   game       = new Game(board, jan, piet);
 	private Move   whiteRight = new Move(game.getField(0, 3), game.getField(0, 1));
 	private Move   whiteLeft  = new Move(game.getField(0, 3), game.getField(0, 5));
 	private Move   blackLeft  = new Move(game.getField(7, 3), game.getField(7, 5));

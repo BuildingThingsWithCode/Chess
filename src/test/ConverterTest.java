@@ -18,7 +18,6 @@ import chess.pieces.Bishop;
 import chess.pieces.Knight;
 import chess.pieces.Pawn;
 import chess.pieces.Queen;
-import chess.util.Converter;
 
 public class ConverterTest {
 	

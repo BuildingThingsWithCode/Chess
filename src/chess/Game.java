@@ -79,8 +79,8 @@ public class Game {
     //CONSTRUCTOR
     public Game (Board board, Player player1, Player player2) {
         this.board   = board;
-        white	     = player1.getColor() == WHITE ? player1 : player2;
-        black	     = player1.getColor() == BLACK ? player1 : player2;
+        white        = player1.getColor() == WHITE ? player1 : player2;
+        black        = player1.getColor() == BLACK ? player1 : player2;
         activePlayer = white; 
 
     }

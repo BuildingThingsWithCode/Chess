@@ -16,12 +16,12 @@ import chess.pieces.Rook;
 
 class PawnTest {
 
-	private Pawn pawn   = new Pawn(WHITE);
-	private Rook rook   = new Rook(BLACK);
-	private Board board = new Board();
-	private Player piet = new Player("Piet", BLACK);
-	private Player jan  = new Player("Jan", WHITE); 
-	private Game game   = new Game(board, jan, piet);
+	private Pawn   pawn  = new Pawn(WHITE);
+	private Rook   rook  = new Rook(BLACK);
+	private Board  board = new Board();
+	private Player piet  = new Player("Piet", BLACK);
+	private Player jan   = new Player("Jan", WHITE); 
+	private Game   game  = new Game(board, jan, piet);
 
 
 	@Test

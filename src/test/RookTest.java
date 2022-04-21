@@ -12,15 +12,15 @@ import chess.pieces.Rook;
 
 class RookTest {
 	
-	Game game;
-	Rook  	  rook		 = new Rook(BLACK);
-	Field 	  startfield = new Field(1, 3);
-	Field 	  endfield	 = new Field(5, 4);
-	Field 	  endfield2	 = new Field(1, 0);
-	Field 	  endfield3	 = new Field(7, 3);
-	Move  move 		 	 = new Move (startfield, endfield);
-	Move  move2 		 = new Move (startfield, endfield2);
-	Move  move3 		 = new Move (startfield, endfield3);
+	Game  game;
+	Rook  rook       = new Rook(BLACK);
+	Field startfield = new Field(1, 3);
+	Field endfield   = new Field(5, 4);
+	Field endfield2  = new Field(1, 0);
+	Field endfield3  = new Field(7, 3);
+	Move  move       = new Move (startfield, endfield);
+	Move  move2      = new Move (startfield, endfield2);
+	Move  move3      = new Move (startfield, endfield3);
 	
 
 	@Test
