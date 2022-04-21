@@ -14,19 +14,19 @@ import javafx.scene.Scene;
 
 public class EndedByUserStage {
 
-	private Controller  	      controller;
-	private SecondStage 	      secondStage;
+	private Controller            controller;
+	private SecondStage           secondStage;
 	private EvaluationResult      result;
 	private EndedByUserController endedByUserController;
-	private String 		          activePlayer;
-	private String 		          otherPlayer;
+	private String                activePlayer;
+	private String                otherPlayer;
 	
 	//CONSTRUCTOR
 	public EndedByUserStage(Controller controller, EvaluationResult result) {
 		this.controller   = controller;
 		this.secondStage  = controller.getSecondStage();
 		//result can be resign or offer draw.
-		this.result 	  = result;
+		this.result       = result;
 		this.activePlayer = controller.getActivePlayer() == WHITE ? "Player White" : "Player Black";
 		this.otherPlayer  = controller.getActivePlayer() == WHITE ? "Player Black" : "Player White"; 
 	}
