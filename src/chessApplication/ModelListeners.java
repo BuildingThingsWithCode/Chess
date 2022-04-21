@@ -13,9 +13,9 @@ import javafx.collections.MapChangeListener;
 
 public class ModelListeners {
 
-   private Game				                      game;
-   private BoardHandler			                   boardHandler;
-   private Controller			                   controller;
+   private Game                                  game;
+   private BoardHandler                          boardHandler;
+   private Controller                            controller;
    private MapChangeListener<Enum<Action>, Move> extraAction;
    private ListChangeListener<EvaluationResult>  evaluation;
    private ListChangeListener<ValidationResult>  validation;
@@ -24,7 +24,7 @@ public class ModelListeners {
    public ModelListeners(Controller controller) {
       this.controller   = controller;
       this.boardHandler = controller.getBoardHandler();
-      this.game 	      = controller.getGame();
+      this.game         = controller.getGame();
       controller.setModelListeners(this);
    }
 
