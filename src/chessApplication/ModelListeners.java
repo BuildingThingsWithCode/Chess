@@ -13,12 +13,12 @@ import javafx.collections.MapChangeListener;
 
 public class ModelListeners {
 
-    private Game				                          game;
-    private BoardHandler			                      boardHandler;
-    private Controller			                          controller;
-    private MapChangeListener<Enum<Action>, Move>         extraAction;
-    private ListChangeListener<EvaluationResult>          evaluation;
-    private ListChangeListener<ValidationResult>          validation;
+    private Game				                  game;
+    private BoardHandler			              boardHandler;
+    private Controller			                  controller;
+    private MapChangeListener<Enum<Action>, Move> extraAction;
+    private ListChangeListener<EvaluationResult>  evaluation;
+    private ListChangeListener<ValidationResult>  validation;
 
     //CONSTRUCTOR
     public ModelListeners(Controller controller) {
