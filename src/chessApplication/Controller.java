@@ -38,23 +38,23 @@ import javafx.stage.Stage;
 
 public class Controller extends Application{
 
-	private IntegerProperty    secondsProperty1 = new SimpleIntegerProperty(null, "secondsProperty1", 60);
-	private IntegerProperty	   secondsProperty2 = new SimpleIntegerProperty(null, "secondsProperty2", 60);
-	private SecondStage 	   secondStage	    = new SecondStage();
-	private Color 		       activePlayer     = WHITE;
-	private List<Label> 	   timeLabels1;
-	private List<Label> 	   timeLabels2;
-	private BoardHandler 	   boardHandler;
-	private Game 		       game;
-	private Sounds 		       sounds;
-	private ViewListeners 	   viewListeners;
-	private ModelListeners 	   modelListeners;
+	private IntegerProperty secondsProperty1 = new SimpleIntegerProperty(null, "secondsProperty1", 60);
+	private IntegerProperty secondsProperty2 = new SimpleIntegerProperty(null, "secondsProperty2", 60);
+	private SecondStage     secondStage      = new SecondStage();
+	private Color           activePlayer     = WHITE;
+	private List<Label>     timeLabels1;
+	private List<Label>     timeLabels2;
+	private BoardHandler    boardHandler;
+	private Game            game;
+	private Sounds          sounds;
+	private ViewListeners   viewListeners;
+	private ModelListeners  modelListeners;
 
 	@FXML BorderPane      root;
-	@FXML HBox 	          top;
-	@FXML VBox 	          left;
-	@FXML VBox	          right;
-	@FXML TilePane	      captured;
+	@FXML HBox            top;
+	@FXML VBox            left;
+	@FXML VBox            right;
+	@FXML TilePane        captured;
 	@FXML public GridPane board;
 	@FXML public Label    seconds1;
 	@FXML public Label    minutes1;
@@ -86,23 +86,23 @@ public class Controller extends Application{
 	private void initialize() {
 		boardHandler  = new BoardHandler(this);
 		boardHandler.set(BLACK);
-		sounds 	      = new Sounds();
+		sounds        = new Sounds();
 		timeLabels1   = Arrays.asList(seconds1, minutes1, hours1);
 		timeLabels2   = Arrays.asList(seconds2, minutes2, hours2);
 		viewListeners = new ViewListeners(this);
 	}
 
 	public Consumer<EvaluationResult> handleEvaluationResult = result -> {
-		String color	     = activePlayer == WHITE ? "Black" :"White";
-		String draw 	     = "\n"+" Game ends in a draw.";
-		String rule 	     = "\n"+"Both players can claim a draw because of the "+"\n";
-		String reason	     = game.threeFoldRepetition.get() == true ? THREE_FOLD_REPETION_RULE.toString() : FIFTY_MOVES_RULE.toString();
-		String winner	     = getActivePlayer() == WHITE ? "Black" : "White";
-		String loser	     = getActivePlayer() == WHITE ? "White" : "Black";
+		String color         = activePlayer == WHITE ? "Black" :"White";
+		String draw          = "\n"+" Game ends in a draw.";
+		String rule          = "\n"+"Both players can claim a draw because of the "+"\n";
+		String reason        = game.threeFoldRepetition.get() == true ? THREE_FOLD_REPETION_RULE.toString() : FIFTY_MOVES_RULE.toString();
+		String winner        = getActivePlayer() == WHITE ? "Black" : "White";
+		String loser         = getActivePlayer() == WHITE ? "White" : "Black";
 		String outOfTimeDraw = loser+" is out of time."+"\n"+winner+" has insufficient material."+"\n"+" Game ends in a draw.";
 		String outOfTimeWin  = loser+" is out of time."+"\n"+winner+" wins.";
 		String checkmate     = "\n"+ color +" wins.";
-		String claim 	     = reason+" Draw has been claimed.";
+		String claim         = reason+" Draw has been claimed.";
 		EndedByUserStage endedByUserStage;
 		switch (result) {
 		case CHECK:
