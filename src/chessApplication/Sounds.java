@@ -26,7 +26,6 @@ public class Sounds {
    
    public void move() {
       play(move);
-
    }
 
    public void draw() {
