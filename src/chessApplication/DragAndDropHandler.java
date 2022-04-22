@@ -40,14 +40,14 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
 
-public class DragAndDropHandler {
+public final class DragAndDropHandler {
 
-   private static final Label            TEMP_BG        = new Label();
-   private static final Background       DARK_GOLD      = new Background(new BackgroundFill(DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY));
-   private static Sounds                 sounds         = new Sounds();
-   private static ObjectProperty<Move>   move           = new SimpleObjectProperty<Move>();
-   private static ObservableBooleanValue moveLegal      = new SimpleBooleanProperty(false);
-   private static ObservableList<String> capturedPieces = FXCollections.observableList(new ArrayList<String>());
+   private static final Label                  TEMP_BG         = new Label();
+   private static final Background             DARK_GOLD       = new Background(new BackgroundFill(DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY));
+   private static final Sounds                 SOUNDS          = new Sounds();
+   private static final ObjectProperty<Move>   MOVE            = new SimpleObjectProperty<Move>();
+   private static final ObservableBooleanValue MOVE_LEGAL      = new SimpleBooleanProperty(false);
+   private static final ObservableList<String> CAPTURED_PIECES = FXCollections.observableList(new ArrayList<String>());
 
    //CONSTRUCTOR
    private DragAndDropHandler() {}
@@ -142,19 +142,19 @@ public class DragAndDropHandler {
     */
    static Consumer<Label> setOnDragDropped = l -> {
       EventHandler<DragEvent> onDragDropped = e -> {
-         ((SimpleBooleanProperty) moveLegal).set(false);
+         ((SimpleBooleanProperty) MOVE_LEGAL).set(false);
          if (e.getDragboard().hasString()) {
-            move.set(getMoveFromUserInput.apply(l, e));
-            if (moveLegal.get() == true) {
-               if (l.getText() != "") capturedPieces.add(l.getText());
+            MOVE.set(getMoveFromUserInput.apply(l, e));
+            if (MOVE_LEGAL.get() == true) {
+               if (l.getText() != "") CAPTURED_PIECES.add(l.getText());
                l.setBackground(TEMP_BG.getBackground());
                l.setText(e.getDragboard().getString());
-               sounds.move();
+               SOUNDS.move();
             }
          }
          //let source know whether the string was successfully 
          //transferred and used 
-         e.setDropCompleted(moveLegal.get());
+         e.setDropCompleted(MOVE_LEGAL.get());
          e.consume();
       };
       l.setOnDragDropped(onDragDropped);
@@ -177,19 +177,19 @@ public class DragAndDropHandler {
 
    //GETTERS & SETTERS
    public static ObjectProperty<Move> getMove() {
-      return move;
+      return MOVE;
    }
 
    public static ObservableBooleanValue getMoveLegal() {
-      return moveLegal;
+      return MOVE_LEGAL;
    }
 
    public static void  setMoveLegal(boolean value) {
-      ((BooleanPropertyBase) moveLegal).set(value);
+      ((BooleanPropertyBase) MOVE_LEGAL).set(value);
    }
 
    public static ObservableList<String> getCapturedPieces(){
-      return capturedPieces;
+      return CAPTURED_PIECES;
    }
 
 

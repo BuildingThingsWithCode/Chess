@@ -25,7 +25,6 @@ public class ModelListeners {
       this.controller   = controller;
       this.boardHandler = controller.getBoardHandler();
       this.game         = controller.getGame();
-      controller.setModelListeners(this);
    }
 
 

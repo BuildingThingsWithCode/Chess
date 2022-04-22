@@ -85,6 +85,7 @@ public class StartStage {
 					boardHandler.setDragAndDrop();
 					//setting the listeners on the observable values from the model & view.
 					ModelListeners modelListeners = new ModelListeners(controller);
+					controller.setModelListeners(modelListeners);
 					modelListeners.set();
 					controller.getViewListeners().set();
 					//if user has selected time
