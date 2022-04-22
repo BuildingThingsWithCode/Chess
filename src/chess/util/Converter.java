@@ -81,7 +81,9 @@ public final class Converter {
 		if (rowIndex == 6) return Optional.of("♟");
 		return PIECES.entrySet()
 				.stream()
-				.filter(entryset -> Stream.of(entryset.getKey()).filter(key -> Arrays.equals(key, new int[]{rowIndex, columnIndex})).count() == 1)
+				.filter(entryset -> Stream.of(entryset.getKey())
+				      .filter(key -> Arrays.equals(key, new int[]{rowIndex, columnIndex}))
+				      .count() == 1)
 				.map(entryset -> entryset.getValue())
 				.findFirst();
 	};
