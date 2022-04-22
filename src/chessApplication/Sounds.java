@@ -14,16 +14,12 @@ public final class Sounds {
 
    //CONSTRUCTOR
    private Sounds() {}
-   
+
    //METHODS
    private static void play(AudioClip clip) {
-      new Thread(new Runnable() {
-         public void run() {
-            clip.play();
-         }
-      }).start();
+      new Thread(() ->  clip.play()).start();
    }
-   
+
    public static void move() {
       play(MOVE);
    }
@@ -49,6 +45,6 @@ public final class Sounds {
    }
 
    public static void resign() {
-     play(RESIGN);
+      play(RESIGN);
    }
 }
