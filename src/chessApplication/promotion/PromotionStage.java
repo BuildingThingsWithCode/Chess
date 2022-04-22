@@ -38,7 +38,6 @@ public class PromotionStage {
 			secondStage.setScene(promotionScene);
 			//retrieving the controller of the promotionStage from the loader.
 			PromotionController promotionController = loader.getController();
-			promotionController.root.setBackground(controller.getBoardHandler().getNeutralBg());
 			List<String> promotionPieces = color == WHITE ? 
 					Arrays.asList(getOneViewPiece("N"),	getOneViewPiece("B"), getOneViewPiece("R"), getOneViewPiece("Q")) 
 					: Arrays.asList(getOneViewPiece("n"), getOneViewPiece("b"), getOneViewPiece("r"), getOneViewPiece("q"));

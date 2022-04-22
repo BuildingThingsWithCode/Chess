@@ -48,8 +48,6 @@ public class StartStage {
 			secondStage.setScene(startScene);
 			//retrieving the controller of the startStage from the loader.
 			StartController startController = loader.getController();
-			//set background.
-			startController.root.setBackground(controller.getBoardHandler().getNeutralBg());
 			//Listener for "settings are accepted by the user".
 			startController.getAccepted().addListener((ChangeListener<Boolean>) (ObservableValue, oldValue, newValue) -> {
 				if (newValue == true) {

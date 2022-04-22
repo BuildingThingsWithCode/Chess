@@ -57,7 +57,6 @@ public class EndedByUserStage {
 				controller.evaluationMessages.setText(endMessage);
 				controller.getBoardHandler().endGame();
 			});
-			endedByUserController.root.setBackground(controller.getBoardHandler().getNeutralBg());
 			endedByUserController.acceptButton.setText(acceptButtonText);
 			endedByUserController.cancelButton.setText(cancelButtonText);
 			endedByUserController.message.setText(confirmationText);

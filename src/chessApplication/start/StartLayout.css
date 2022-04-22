@@ -1,6 +1,7 @@
 .root{
 	-fx-focus-color:#B8860B;
 	-fx-faint-focus-color:#B8860B22;
+	-fx-background-image: url('/resources/images/rightBg.png');
 }
 
 .button{

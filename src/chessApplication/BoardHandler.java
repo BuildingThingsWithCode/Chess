@@ -355,11 +355,7 @@ public class BoardHandler {
     }
 
     //GETTERS & SETTERS
-    public Background getNeutralBg() {
-        return neutralBg;
-    }
-
-    public Optional<Timers> getTimers() {
+   public Optional<Timers> getTimers() {
         return Optional.ofNullable(timers);
     }
 
