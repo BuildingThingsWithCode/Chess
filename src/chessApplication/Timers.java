@@ -36,19 +36,21 @@ public class Timers {
 		//TimeListener takes care of displaying the time for the players.
 		listener1 = new TimeListener(controller, controller.getSecondsProperty1(), controller.getTimeLabels1());
 		listener2 = new TimeListener(controller, controller.getSecondsProperty2(), controller.getTimeLabels2());
-		BiConsumer<Timeline, IntegerProperty> setTimeline = (timeline, property) -> {
-			KeyValue secondsKey = new KeyValue(property, 0);
-			//one cycle is 60 seconds or one minute. So one hour is 60 cycles. 2 players -> *2
-			timeline.setCycleCount(parseInt(controller.hours1) *60 + parseInt(controller.minutes1) *2);
-			timeline.getKeyFrames().add(new KeyFrame(seconds(60), secondsKey));
-		};
 		//set time line for both players. label seconds1 is bound with secondsProperty1.
 		//label seconds2 is bound with secondsProperty2.
 		setTimeline.accept(piecesAtBottom == WHITE ? timeline2 : timeline1, controller.getSecondsProperty1());
 		setTimeline.accept(piecesAtBottom == WHITE ? timeline1 : timeline2, controller.getSecondsProperty2());
 		timeline1.play();
 	}
-
+	
+	//help method to set the time line for the players clocks.
+	BiConsumer<Timeline, IntegerProperty> setTimeline = (timeline, property) -> {
+      KeyValue secondsKey = new KeyValue(property, 0);
+      //one cycle is 60 seconds or one minute. So one hour is 60 cycles. 2 players -> *2
+      timeline.setCycleCount(parseInt(controller.hours1) *60 + parseInt(controller.minutes1) *2);
+      timeline.getKeyFrames().add(new KeyFrame(seconds(60), secondsKey));
+   };
+	
 	public void stop() {
 		timeline1.stop();
 		timeline2.stop();

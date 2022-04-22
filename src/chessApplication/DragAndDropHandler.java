@@ -190,7 +190,5 @@ public final class DragAndDropHandler {
    public static ObservableList<String> getCapturedPieces(){
       return CAPTURED_PIECES;
    }
-
-
 }
 
