@@ -80,8 +80,6 @@ public class BoardHandler {
         this.left       = controller.left;
         this.top        = controller.top;
         setDimensions();
-        setBackgroundImage();
-
     }
 
     //METHODS
@@ -115,11 +113,7 @@ public class BoardHandler {
         else if (95 < newValue) fontSize = 60;
         return fontSize;
     }
-    
-    private void setBackgroundImage() {
-        controller.right.setBackground(neutralBg);
-    }
-
+   
     //help function.
     public BiFunction<Color, Integer, Integer> translate = (c, i) -> {
         return c == WHITE ? 7-i : i;
