@@ -58,11 +58,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class BoardHandler {
-    private final Background    LIGHT_TILE   = new Background(new BackgroundFill(ANTIQUEWHITE, CornerRadii.EMPTY, Insets.EMPTY));
-    private final Background    DARK_TILE    = new Background(new BackgroundFill(BURLYWOOD, CornerRadii.EMPTY, Insets.EMPTY));
-    private final Background    NEUTRAL_BG   = new Background(new BackgroundImage(new Image(getClass().getResource("../resources/images/rightBg.png").toString()), REPEAT, REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT));
-    private final List<String>  SIDE_MARKERS = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8");
-    private final List<String>  TOP_MARKERS  = Arrays.asList("h", "g", "f", "e", "d", "c", "b", "a");
+    private final Background    lightTile   = new Background(new BackgroundFill(ANTIQUEWHITE, CornerRadii.EMPTY, Insets.EMPTY));
+    private final Background    darkTile    = new Background(new BackgroundFill(BURLYWOOD, CornerRadii.EMPTY, Insets.EMPTY));
+    private final Background    neutralBg   = new Background(new BackgroundImage(new Image(getClass().getResource("../resources/images/rightBg.png").toString()), REPEAT, REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT));
+    private final List<String>  sideMarkers = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8");
+    private final List<String>  topMarkers  = Arrays.asList("h", "g", "f", "e", "d", "c", "b", "a");
     private Color               placement;
     private Move                translatedMove;
     private GridPane            board;
@@ -117,7 +117,7 @@ public class BoardHandler {
     }
     
     private void setBackgroundImage() {
-        controller.right.setBackground(NEUTRAL_BG);
+        controller.right.setBackground(neutralBg);
     }
 
     //help function.
@@ -136,10 +136,10 @@ public class BoardHandler {
         for (int i=0; i<8; i++) {
             ((Labeled) left.getChildren()
                     .get(i))
-            .setText(SIDE_MARKERS.get(translate.apply(placement, i)));
+            .setText(sideMarkers.get(translate.apply(placement, i)));
             ((Labeled) top.getChildren()
                     .get(i))
-            .setText(TOP_MARKERS.get(translate.apply(placement, i)));
+            .setText(topMarkers.get(translate.apply(placement, i)));
         }
         //place the pieces or nothing if an empty field.
         board.getChildren()
@@ -353,7 +353,7 @@ public class BoardHandler {
                     board.getChildren()
                     .forEach(c -> { 
                         c.setEffect(null);
-                        ((Region) c).setBackground(((GridPane.getRowIndex(c) + getColumnIndex(c)) %2 == 0) ? LIGHT_TILE : DARK_TILE);
+                        ((Region) c).setBackground(((GridPane.getRowIndex(c) + getColumnIndex(c)) %2 == 0) ? lightTile : darkTile);
                     });
                 }
             }
@@ -362,7 +362,7 @@ public class BoardHandler {
 
     //GETTERS & SETTERS
     public Background getNeutralBg() {
-        return NEUTRAL_BG;
+        return neutralBg;
     }
 
     public Optional<Timers> getTimers() {
