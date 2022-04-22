@@ -46,7 +46,6 @@ public class Controller extends Application{
 	private List<Label>     timeLabels2;
 	private BoardHandler    boardHandler;
 	private Game            game;
-	private Sounds          sounds;
 	private ViewListeners   viewListeners;
 	private ModelListeners  modelListeners;
 
@@ -86,7 +85,6 @@ public class Controller extends Application{
 	private void initialize() {
 		boardHandler  = new BoardHandler(this);
 		boardHandler.set(BLACK);
-		sounds        = new Sounds();
 		timeLabels1   = Arrays.asList(seconds1, minutes1, hours1);
 		timeLabels2   = Arrays.asList(seconds2, minutes2, hours2);
 		viewListeners = new ViewListeners(this);
@@ -110,18 +108,18 @@ public class Controller extends Application{
 			boardHandler.handleButtons(offerDraw);
 			break;
 		case CHECKMATE:
-			sounds.checkmate();
+			Sounds.checkmate();
 			evaluationMessages.setText(result.toString()+ checkmate);
 			boardHandler.endGame();
 			boardHandler.discoLights();
 			break;
 		case STALEMATE:
-			sounds.stalemate();
+		   Sounds.stalemate();
 			evaluationMessages.setText(result.toString()+ draw);
 			boardHandler.endGame();
 			break;
 		case INSUFFICIENT_MATERIAL:
-			sounds.insufficientMaterial();
+		   Sounds.insufficientMaterial();
 			evaluationMessages.setText(result.toString()+ draw);
 			boardHandler.endGame();
 			break;
@@ -144,12 +142,12 @@ public class Controller extends Application{
 		case OUT_OF_TIME:
 			if (secondStage.isShowing()) secondStage.close(); 
 			if (game.insufficientMaterialColor.test(getActivePlayer() == WHITE ? BLACK : WHITE)) {
-				sounds.draw();
+			   Sounds.draw();
 				evaluationMessages.setText(outOfTimeDraw);
 				boardHandler.endGame();
 			}
 			else {
-				sounds.outOfTime();
+			   Sounds.outOfTime();
 				evaluationMessages.setText(outOfTimeWin);
 				boardHandler.endGame();
 				boardHandler.discoLights();
@@ -164,7 +162,7 @@ public class Controller extends Application{
 			endedByUserStage.setSceneAndShow();
 			break;
 		case CLAIM_DRAW:
-			sounds.draw();
+		   Sounds.draw();
 			evaluationMessages.setText(claim);
 			boardHandler.endGame();
 			break;
@@ -266,11 +264,7 @@ public class Controller extends Application{
 	public void setActivePlayer(Color color) {
 		this.activePlayer = color;
 	}
-
-	public Sounds getSounds() {
-		return sounds;
-	}
-
+	
 	public ViewListeners getViewListeners() {
 		return viewListeners;
 	}

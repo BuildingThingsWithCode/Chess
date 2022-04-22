@@ -2,21 +2,21 @@ package chessApplication;
 
 import javafx.scene.media.AudioClip;
 
-public class Sounds {
+public final class Sounds {
 
-   private final AudioClip move                  = new AudioClip(getClass().getResource("../resources/sounds/move.mp3").toString());
-   private final AudioClip draw                  = new AudioClip(getClass().getResource("../resources/sounds/draw.mp3").toString());
-   private final AudioClip checkmate             = new AudioClip(getClass().getResource("../resources/sounds/checkmate.mp3").toString());
-   private final AudioClip stalemate             = new AudioClip(getClass().getResource("../resources/sounds/stalemate.mp3").toString());
-   private final AudioClip outOfTime             = new AudioClip(getClass().getResource("../resources/sounds/outoftime.mp3").toString());
-   private final AudioClip insufficientMaterial  = new AudioClip(getClass().getResource("../resources/sounds/insufficientmaterial.mp3").toString());	
-   private final AudioClip resign                = new AudioClip(getClass().getResource("../resources/sounds/resign.mp3").toString());
+   private static final AudioClip MOVE                  = new AudioClip(Sounds.class.getResource("../resources/sounds/move.mp3").toString());
+   private static final AudioClip DRAW                  = new AudioClip(Sounds.class.getResource("../resources/sounds/draw.mp3").toString());
+   private static final AudioClip CHECKMATE             = new AudioClip(Sounds.class.getResource("../resources/sounds/checkmate.mp3").toString());
+   private static final AudioClip STALEMATE             = new AudioClip(Sounds.class.getResource("../resources/sounds/stalemate.mp3").toString());
+   private static final AudioClip OUT_OF_TIME           = new AudioClip(Sounds.class.getResource("../resources/sounds/outoftime.mp3").toString());
+   private static final AudioClip INSUFFICIENT_MATERIAL = new AudioClip(Sounds.class.getResource("../resources/sounds/insufficientmaterial.mp3").toString());	
+   private static final AudioClip RESIGN                = new AudioClip(Sounds.class.getResource("../resources/sounds/resign.mp3").toString());
 
    //CONSTRUCTOR
-   public Sounds() {}
+   private Sounds() {}
    
    //METHODS
-   private void play(AudioClip clip) {
+   private static void play(AudioClip clip) {
       new Thread(new Runnable() {
          public void run() {
             clip.play();
@@ -24,31 +24,31 @@ public class Sounds {
       }).start();
    }
    
-   public void move() {
-      play(move);
+   public static void move() {
+      play(MOVE);
    }
 
-   public void draw() {
-      play(draw);
+   public static void draw() {
+      play(DRAW);
    }
 
-   public void checkmate() {
-      play(checkmate);
+   public static void checkmate() {
+      play(CHECKMATE);
    }
 
-   public void stalemate() {
-      play(stalemate);
+   public static void stalemate() {
+      play(STALEMATE);
    }
 
-   public void outOfTime() {
-      play(outOfTime);
+   public static void outOfTime() {
+      play(OUT_OF_TIME);
    }
 
-   public void insufficientMaterial() {
-      play(insufficientMaterial);
+   public static void insufficientMaterial() {
+      play(INSUFFICIENT_MATERIAL);
    }
 
-   public void resign() {
-     play(resign);
+   public static void resign() {
+     play(RESIGN);
    }
 }

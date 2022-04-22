@@ -44,7 +44,6 @@ public final class DragAndDropHandler {
 
    private static final Label                  TEMP_BG         = new Label();
    private static final Background             DARK_GOLD       = new Background(new BackgroundFill(DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY));
-   private static final Sounds                 SOUNDS          = new Sounds();
    private static final ObjectProperty<Move>   MOVE            = new SimpleObjectProperty<Move>();
    private static final ObservableBooleanValue MOVE_LEGAL      = new SimpleBooleanProperty(false);
    private static final ObservableList<String> CAPTURED_PIECES = FXCollections.observableList(new ArrayList<String>());
@@ -149,7 +148,7 @@ public final class DragAndDropHandler {
                if (l.getText() != "") CAPTURED_PIECES.add(l.getText());
                l.setBackground(TEMP_BG.getBackground());
                l.setText(e.getDragboard().getString());
-               SOUNDS.move();
+               Sounds.move();
             }
          }
          //let source know whether the string was successfully 

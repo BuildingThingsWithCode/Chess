@@ -8,6 +8,7 @@ import java.io.IOException;
 import chess.util.GameEvaluator.EvaluationResult;
 import chessApplication.Controller;
 import chessApplication.SecondStage;
+import chessApplication.Sounds;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -49,9 +50,9 @@ public class EndedByUserStage {
 				if (newValue == true) {
 					if (result == RESIGN) {
 						controller.getBoardHandler().discoLights();
-						controller.getSounds().resign();
+						Sounds.resign();
 					}
-					else controller.getSounds().draw();
+					else Sounds.draw();
 				}
 				controller.evaluationMessages.setText(endMessage);
 				controller.getBoardHandler().endGame();
