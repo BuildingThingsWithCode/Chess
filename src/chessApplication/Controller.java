@@ -209,6 +209,8 @@ public class Controller extends Application{
 		stage.setMinHeight(525);
 		stage.setScene(scene);
 		stage.show();
+		//On first play the AudioClips are lagging. This bug is avoided by playing a clip without sound here.
+		Sounds.lagWorkAround();
 	}
 
 

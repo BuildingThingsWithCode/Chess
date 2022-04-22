@@ -15,36 +15,35 @@ public final class Sounds {
    //CONSTRUCTOR
    private Sounds() {}
 
-   //METHODS
-   private static void play(AudioClip clip) {
-      new Thread(() ->  clip.play()).start();
+   public static void lagWorkAround() {
+      MOVE.play(0.0);
    }
 
    public static void move() {
-      play(MOVE);
+      MOVE.play();
    }
 
    public static void draw() {
-      play(DRAW);
+      DRAW.play();
    }
 
    public static void checkmate() {
-      play(CHECKMATE);
+      CHECKMATE.play();
    }
 
    public static void stalemate() {
-      play(STALEMATE);
+      STALEMATE.play();
    }
 
    public static void outOfTime() {
-      play(OUT_OF_TIME);
+      OUT_OF_TIME.play();
    }
 
    public static void insufficientMaterial() {
-      play(INSUFFICIENT_MATERIAL);
+      INSUFFICIENT_MATERIAL.play();
    }
 
    public static void resign() {
-      play(RESIGN);
+      RESIGN.play();
    }
 }
