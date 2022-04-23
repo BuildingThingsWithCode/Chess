@@ -271,10 +271,6 @@ public class Controller extends Application{
 		return viewListeners;
 	}
 	
-	public void setViewListeners(ViewListeners viewListeners) {
-		this.viewListeners = viewListeners;
-	}
-
 	public ModelListeners getModelListeners() {
 		return modelListeners;
 	}
