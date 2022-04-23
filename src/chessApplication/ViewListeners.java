@@ -1,22 +1,16 @@
 package chessApplication;
 
-import static chessApplication.DragAndDropHandler.getCapturedPieces;
 import static chessApplication.DragAndDropHandler.getMove;
 import static chessApplication.DragAndDropHandler.getMoveLegal;
 
-import java.util.Collections;
-
 import chess.Move;
 import javafx.beans.value.ChangeListener;
-import javafx.collections.ListChangeListener;
-import javafx.scene.control.Labeled;
 
 public class ViewListeners {
 
 	private Controller                 controller;
 	private BoardHandler               boardHandler;
 	private Move                       modelMove;
-	private ListChangeListener<String> capturedPieces;
 	private ChangeListener<Move>       move;
 	private ChangeListener<Boolean>    moveLegal;
 	
@@ -29,20 +23,6 @@ public class ViewListeners {
 	
 	//METHODS
 	public void set() {
-		/*
-		 * set changeListener on ObservableList captured pieces.
-		 */
-		getCapturedPieces().addListener(capturedPieces = change -> {
-			change.next();
-			if (change.wasAdded()) {
-				controller.captured.setVisible(true);
-				Collections.sort(change.getList());
-				for (int i=0; i<=change.getList().size()-1; i++) {
-					((Labeled) controller.captured.getChildren().get(i)).setText(change.getList().get(i));
-				}
-			}
-		});
-
 		/*
 		 * set a listener on the move from the user. Translates the move (to account for
 		 * playing with white or black at the bottom of the board). Transforms the move
@@ -64,7 +44,6 @@ public class ViewListeners {
 	}
 
 	public void remove() {
-		getCapturedPieces().removeListener(capturedPieces);
 		getMove().removeListener(move);
 		getMoveLegal().removeListener(moveLegal);
 	}

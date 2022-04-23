@@ -1,9 +1,10 @@
 package test;
 import static chess.util.Converter.getAllBlackViewPieces;
 import static chess.util.Converter.getAllWhiteViewPieces;
-import static chess.util.Converter.getModelPiece;
-import static chess.util.Converter.getOneViewPiece;
+import static chess.util.Converter.getModelPieceFromViewPiece;
 import static chess.util.Converter.getPathToImage;
+import static chess.util.Converter.getViewPieceFromFEN;
+import static chess.util.Converter.getViewPieceFromModelPiece;
 import static chess.util.Converter.modelPieceAtIndexes;
 import static chess.util.Converter.viewPieceAtIndexes;
 import static javafx.scene.paint.Color.BLACK;
@@ -15,9 +16,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import chess.pieces.Bishop;
+import chess.pieces.King;
 import chess.pieces.Knight;
 import chess.pieces.Pawn;
 import chess.pieces.Queen;
+import chess.pieces.Rook;
 
 public class ConverterTest {
 	
@@ -38,11 +41,19 @@ public class ConverterTest {
 	}
 	
 	@Test
-	void testGetOneViewPiece() {
-		assertEquals("♔", getOneViewPiece("K"));
-		assertEquals("♚", getOneViewPiece("k"));
-		assertEquals("♝", getOneViewPiece("b"));
-		assertEquals("♘", getOneViewPiece("N"));
+	void testGetViewPieceFromModelPiece() {
+	   assertEquals("♔", getViewPieceFromModelPiece(new King(WHITE)));
+	   assertEquals("♕", getViewPieceFromModelPiece(new Queen(WHITE)));
+	   assertEquals("♜", getViewPieceFromModelPiece(new Rook(BLACK)));
+	   assertEquals("♟", getViewPieceFromModelPiece(new Pawn(BLACK)));
+	}
+	
+	@Test
+	void testGetViewPieceFromFEN() {
+		assertEquals("♔", getViewPieceFromFEN("K"));
+		assertEquals("♚", getViewPieceFromFEN("k"));
+		assertEquals("♝", getViewPieceFromFEN("b"));
+		assertEquals("♘", getViewPieceFromFEN("N"));
 	}
 	
 	@Test
@@ -63,13 +74,13 @@ public class ConverterTest {
 	}
 	
 	@Test
-	void testGetModelPiece() {
-		assertEquals(WHITE, getModelPiece("♘").getColor());
-		assertEquals(true, getModelPiece("♘") instanceof Knight);
-		assertEquals(BLACK, getModelPiece("♛").getColor());
-		assertEquals(true, getModelPiece("♛") instanceof Queen);
-		assertEquals(BLACK, getModelPiece("♟").getColor());
-		assertEquals(true, getModelPiece("♟") instanceof Pawn);
+	void testGetModelPieceFromViewPiece() {
+		assertEquals(WHITE, getModelPieceFromViewPiece("♘").getColor());
+		assertEquals(true, getModelPieceFromViewPiece("♘") instanceof Knight);
+		assertEquals(BLACK, getModelPieceFromViewPiece("♛").getColor());
+		assertEquals(true, getModelPieceFromViewPiece("♛") instanceof Queen);
+		assertEquals(BLACK, getModelPieceFromViewPiece("♟").getColor());
+		assertEquals(true, getModelPieceFromViewPiece("♟") instanceof Pawn);
 
 	}
 }

@@ -4,9 +4,8 @@ package chessApplication;
 import static chess.util.Action.CASTLING;
 import static chess.util.Action.ENPASSANT;
 import static chess.util.Action.PROMOTION;
-import static chess.util.Converter.getModelPiece;
+import static chess.util.Converter.getModelPieceFromViewPiece;
 import static chess.util.Converter.viewPieceAtIndexes;
-import static chessApplication.DragAndDropHandler.getCapturedPieces;
 import static chessApplication.DragAndDropHandler.setOnDragDetected;
 import static chessApplication.DragAndDropHandler.setOnDragDone;
 import static chessApplication.DragAndDropHandler.setOnDragDropped;
@@ -213,7 +212,6 @@ public class BoardHandler {
             translatedMove = translateMove.apply(move);
             board.getChildren().forEach(c -> {
                 if (getRowIndex(c) == translatedMove.getStartX() && getColumnIndex(c) == translatedMove.getStartY()) {
-                    getCapturedPieces().add(((Labeled) c).getText());
                     ((Labeled) c).setText("");
                 }
             });
@@ -254,14 +252,13 @@ public class BoardHandler {
     //method that sets the promotion piece in the view and the model.
     public void setPromotionPiece(String piece) {
         viewField.setText(piece);
-        controller.getGame().setPromotionPiece(modelField, getModelPiece(piece));
+        controller.getGame().setPromotionPiece(modelField, getModelPieceFromViewPiece(piece));
     }
 
     public void clear() {
         board.getChildren().forEach(c -> ((Labeled) c).setText(""));
         controller.captured.getChildren().forEach(c -> ((Labeled) c).setText(""));
         controller.captured.setVisible(false);
-        getCapturedPieces().clear();
         controller.timer1.setVisible(false);
         controller.timer2.setVisible(false);
         getTimers().ifPresent(t -> t.stop());

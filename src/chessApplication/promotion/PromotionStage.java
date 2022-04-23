@@ -1,6 +1,6 @@
 package chessApplication.promotion;
 
-import static chess.util.Converter.getOneViewPiece;
+import static chess.util.Converter.getViewPieceFromFEN;
 import static javafx.scene.paint.Color.WHITE;
 
 import java.io.IOException;
@@ -39,8 +39,8 @@ public class PromotionStage {
 			//retrieving the controller of the promotionStage from the loader.
 			PromotionController promotionController = loader.getController();
 			List<String> promotionPieces = color == WHITE ? 
-					Arrays.asList(getOneViewPiece("N"),	getOneViewPiece("B"), getOneViewPiece("R"), getOneViewPiece("Q")) 
-					: Arrays.asList(getOneViewPiece("n"), getOneViewPiece("b"), getOneViewPiece("r"), getOneViewPiece("q"));
+					Arrays.asList(getViewPieceFromFEN("N"),	getViewPieceFromFEN("B"), getViewPieceFromFEN("R"), getViewPieceFromFEN("Q")) 
+					: Arrays.asList(getViewPieceFromFEN("n"), getViewPieceFromFEN("b"), getViewPieceFromFEN("r"), getViewPieceFromFEN("q"));
 					for (int i=0; i<4 ; i++) ((Labeled) promotionController.pieces.getChildren().get(i)).setText(promotionPieces.get(i));
 					//Listener for "settings are accepted by the user".
 					promotionController.piece.addListener((ChangeListener<String>) (ObservableValue, oldValue, newValue) -> {

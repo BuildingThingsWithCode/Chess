@@ -3,6 +3,8 @@ package chess;
 import static chess.util.Action.CASTLING;
 import static chess.util.Action.ENPASSANT;
 import static chess.util.Action.PROMOTION;
+import static chess.util.Converter.getModelPieceFromViewPiece;
+import static chess.util.Converter.getViewPieceFromModelPiece;
 import static chess.util.FENBuilder.gameToFEN;
 import static chess.util.FENBuilder.gameToFEN3FoldRule;
 import static chess.util.GameEvaluator.check;
@@ -63,12 +65,12 @@ public class Game {
     private Player                           black;
     private Move                             lastMove;
     private Player                           activePlayer; 
-    private List<GameState>                  gameStates            = new ArrayList<GameState>();
-    private List<Piece>                      takenPieces           = new ArrayList<Piece>();
-    private List<String>                     threeFoldRepetionList = new ArrayList<String>();
-    private ObservableMap<Enum<Action>, Move>action                = FXCollections.observableMap(new HashMap<Enum<Action>,Move>());
-    private ObservableList<ValidationResult> validationResult      = FXCollections.observableList(new ArrayList<ValidationResult>()); 
-    private ObservableList<EvaluationResult> evaluationResult      = FXCollections.observableList(new ArrayList<EvaluationResult>());
+    private List<GameState>                  gameStates            = new ArrayList<>();
+    private List<String>                     threeFoldRepetionList = new ArrayList<>();
+    private ObservableList<String>           takenPieces           = FXCollections.observableList(new ArrayList<>());
+    private ObservableMap<Enum<Action>, Move>action                = FXCollections.observableMap(new HashMap<>());
+    private ObservableList<ValidationResult> validationResult      = FXCollections.observableList(new ArrayList<>()); 
+    private ObservableList<EvaluationResult> evaluationResult      = FXCollections.observableList(new ArrayList<>());
     private int                              halfMove              = 0;
     //full move starts at 1.
     private int                              fullMove              = 1;
@@ -370,7 +372,7 @@ public class Game {
             getField(m.getEndX() + oneRow, m.getEndY())
             .getPiece()
             .ifPresent(p -> {
-                takenPieces.add(p);
+                takenPieces.add(getViewPieceFromModelPiece(p));
                 getField(m.getEndX() + oneRow, m.getEndY()).setPiece(null);
             });
             Move move = new Move(getField(m.getEndX() + oneRow, m.getEndY()),getField(m.getEndX() + oneRow, m.getEndY()));
@@ -468,7 +470,7 @@ public class Game {
      */
     private void execute(Move move) {
         move.getStart().setPiece(null);
-        move.getEnd().getPiece().ifPresent(p -> takenPieces.add(p));
+        move.getEnd().getPiece().ifPresent(p -> takenPieces.add(getViewPieceFromModelPiece(p)));
         move.getEnd().setPiece(move.getPiece());
     }
 
@@ -503,7 +505,7 @@ public class Game {
     }
 
     public ArrayList<Piece> getCopyOfTakenPieces() {
-        return takenPieces.stream().collect(Collectors.toCollection(ArrayList::new));
+        return takenPieces.stream().map(str -> getModelPieceFromViewPiece(str)).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public int getHalfMove() {
@@ -516,6 +518,10 @@ public class Game {
 
     public String getEnpassantField() {
         return enpassantField;
+    }
+    
+    public ObservableList<String> getTakenPieces(){
+       return takenPieces;
     }
 
     public  ObservableMap<Enum<Action>, Move> getAction() {

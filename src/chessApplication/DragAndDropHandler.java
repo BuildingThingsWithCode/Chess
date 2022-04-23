@@ -2,7 +2,7 @@ package chessApplication;
 
 
 import static chess.util.Converter.getAllWhiteViewPieces;
-import static chess.util.Converter.getModelPiece;
+import static chess.util.Converter.getModelPieceFromViewPiece;
 import static chess.util.Converter.getPathToImage;
 import static javafx.scene.layout.GridPane.getColumnIndex;
 import static javafx.scene.layout.GridPane.getRowIndex;
@@ -10,7 +10,6 @@ import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.DARKGOLDENROD;
 import static javafx.scene.paint.Color.WHITE;
 
-import java.util.ArrayList;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
@@ -22,8 +21,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableBooleanValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -46,7 +43,6 @@ public final class DragAndDropHandler {
    private static final Background             DARK_GOLD       = new Background(new BackgroundFill(DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY));
    private static final ObjectProperty<Move>   MOVE            = new SimpleObjectProperty<Move>();
    private static final ObservableBooleanValue MOVE_LEGAL      = new SimpleBooleanProperty(false);
-   private static final ObservableList<String> CAPTURED_PIECES = FXCollections.observableList(new ArrayList<String>());
 
    //CONSTRUCTOR
    private DragAndDropHandler() {}
@@ -130,14 +126,13 @@ public final class DragAndDropHandler {
    private static BiFunction<Label, DragEvent, Move> getMoveFromUserInput = (l, e) -> {
       Field start = new Field(getRowIndex(((Label) e.getGestureSource())), getColumnIndex(((Label) e.getGestureSource())));
       Field end   = new Field(getRowIndex(l), getColumnIndex(l));
-      start.setPiece(getModelPiece(e.getDragboard().getString()));
+      start.setPiece(getModelPieceFromViewPiece(e.getDragboard().getString()));
       return new Move(start, end);
    };
 
    /*
     * If there is a string data on dragBoard, read it and use it. 
     * Move will be played in the model and moveLegal will be set.
-    * Add captured piece to observableList so GUI can be updated.
     */
    static Consumer<Label> setOnDragDropped = l -> {
       EventHandler<DragEvent> onDragDropped = e -> {
@@ -145,7 +140,6 @@ public final class DragAndDropHandler {
          if (e.getDragboard().hasString()) {
             MOVE.set(getMoveFromUserInput.apply(l, e));
             if (MOVE_LEGAL.get() == true) {
-               if (l.getText() != "") CAPTURED_PIECES.add(l.getText());
                l.setBackground(TEMP_BG.getBackground());
                l.setText(e.getDragboard().getString());
                Sounds.move();
@@ -185,10 +179,6 @@ public final class DragAndDropHandler {
 
    public static void  setMoveLegal(boolean value) {
       ((BooleanPropertyBase) MOVE_LEGAL).set(value);
-   }
-
-   public static ObservableList<String> getCapturedPieces(){
-      return CAPTURED_PIECES;
    }
 }
 
