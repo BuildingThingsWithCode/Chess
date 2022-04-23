@@ -505,9 +505,15 @@ public class Game {
     }
 
     public ArrayList<Piece> getCopyOfTakenPieces() {
-        return takenPieces.stream().map(str -> getModelPieceFromViewPiece(str)).collect(Collectors.toCollection(ArrayList::new));
+        return takenPieces.stream()
+              .map(str -> getModelPieceFromViewPiece(str))
+              .collect(Collectors.toCollection(ArrayList::new));
     }
-
+    
+    public Move getLastMove() {
+       return lastMove;
+    }
+    
     public int getHalfMove() {
         return halfMove;
     }

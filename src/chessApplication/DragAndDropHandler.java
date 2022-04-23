@@ -138,9 +138,9 @@ public final class DragAndDropHandler {
          if (e.getDragboard().hasString()) {
             MOVE.set(getMoveFromUserInput.apply(l, e));
             if (MOVE_LEGAL.get() == true) {
+               Sounds.move();
                l.setBackground(TEMP_BG.getBackground());
                l.setText(e.getDragboard().getString());
-               Sounds.move();
             }
          }
          //let source know whether the string was successfully 
