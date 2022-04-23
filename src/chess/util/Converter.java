@@ -25,7 +25,6 @@ import chess.pieces.Rook;
 public final class Converter {
 
    public static final Map<Piece, List<String>> FEN_MAP      = new HashMap<Piece, List<String>>();
-   public static final Map<Integer, String>     EMPTY_FIELDS = new HashMap<Integer, String>();
    public static final Map<String, int[]>       CASTLING_MAP = new HashMap<String, int[]>();
    public static final Map<int[][],String>      PIECES       = new HashMap<>();
 
