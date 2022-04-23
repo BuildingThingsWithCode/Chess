@@ -2,7 +2,6 @@ package chessApplication;
 
 
 import static chess.util.Converter.getAllWhiteViewPieces;
-import static chess.util.Converter.getModelPieceFromViewPiece;
 import static chess.util.Converter.getPathToImage;
 import static javafx.scene.layout.GridPane.getColumnIndex;
 import static javafx.scene.layout.GridPane.getRowIndex;
