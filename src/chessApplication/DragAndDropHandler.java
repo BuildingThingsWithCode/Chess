@@ -126,7 +126,6 @@ public final class DragAndDropHandler {
    private static BiFunction<Label, DragEvent, Move> getMoveFromUserInput = (l, e) -> {
       Field start = new Field(getRowIndex(((Label) e.getGestureSource())), getColumnIndex(((Label) e.getGestureSource())));
       Field end   = new Field(getRowIndex(l), getColumnIndex(l));
-      start.setPiece(getModelPieceFromViewPiece(e.getDragboard().getString()));
       return new Move(start, end);
    };
 
