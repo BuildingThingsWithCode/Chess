@@ -82,9 +82,7 @@ public class StartStage {
 					//set eventHandlers for drag & drop gesture
 					boardHandler.setDragAndDrop();
 					//setting the listeners on the observable values from the model & view.
-					ModelListeners modelListeners = new ModelListeners(controller);
-					controller.setModelListeners(modelListeners);
-					modelListeners.set();
+					new ModelListeners(controller);
 					controller.getViewListeners().set();
 					//if user has selected time
 					if (! (startController.minutesField.getText().equals("00") 

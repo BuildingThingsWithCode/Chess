@@ -10,6 +10,9 @@ import chess.Move;
 import chess.util.Action;
 import chess.util.GameEvaluator.EvaluationResult;
 import chess.util.MoveValidator.ValidationResult;
+import javafx.beans.property.BooleanPropertyBase;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableBooleanValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.MapChangeListener;
 import javafx.scene.control.Labeled;
@@ -23,12 +26,14 @@ public class ModelListeners {
    private ListChangeListener<EvaluationResult>  evaluation;
    private ListChangeListener<ValidationResult>  validation;
    private ListChangeListener<String>            takenPieces;  
-
+   
    //CONSTRUCTOR
    public ModelListeners(Controller controller) {
       this.controller   = controller;
       this.boardHandler = controller.getBoardHandler();
       this.game         = controller.getGame();
+      controller.setModelListeners(this);
+      this.set();
    }
 
 
@@ -70,6 +75,7 @@ public class ModelListeners {
          }
       });
    }
+
 
    public void remove() {
       game.getTakenPieces().removeListener(takenPieces);

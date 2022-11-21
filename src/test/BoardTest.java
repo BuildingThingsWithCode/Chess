@@ -29,6 +29,7 @@ class BoardTest {
 	    assertEquals(true, board.getPiece(1, 6).get() instanceof Pawn);
 	    assertEquals(true , board.getPiece(6, 6).get() instanceof Pawn);
 	    assertEquals(true, board.getPiece(7, 3).get() instanceof King);
+	    assertEquals(Optional.empty(), board.getPiece(3, 3));
 	}
 
 	@Test

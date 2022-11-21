@@ -3,6 +3,7 @@ package chess.util;
 import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -21,12 +22,15 @@ import chess.pieces.Pawn;
 import chess.pieces.Piece;
 import chess.pieces.Queen;
 import chess.pieces.Rook;
+import javafx.util.Pair;
 
 public final class Converter {
 
-   public static final Map<Piece, List<String>> FEN_MAP      = new HashMap<Piece, List<String>>();
-   public static final Map<String, int[]>       CASTLING_MAP = new HashMap<String, int[]>();
-   public static final Map<int[][],String>      PIECES       = new HashMap<>();
+   private static final double                   SIZE_THRESHOLD = 78.0;
+   private static final int                      SMALL_IMAGE    = 2;
+   private static final int                      BIG_IMAGE      = 3;
+   private static final Map<Piece, List<String>> FEN_MAP        = new HashMap<Piece, List<String>>();
+   private static final Map<List<Pair<Integer, Integer>>,Pair<String, Piece>> PIECES = new HashMap<>();
 
    private Converter() {}
 
@@ -60,16 +64,27 @@ public final class Converter {
    }
 
    static {
-      PIECES.put(new int[][] {{0,3}},        "♔");
-      PIECES.put(new int[][] {{7,3}},        "♚");
-      PIECES.put(new int[][] {{0,4}},        "♕");
-      PIECES.put(new int[][] {{7,4}},        "♛");
-      PIECES.put(new int[][] {{0,0}, {0,7}}, "♖");
-      PIECES.put(new int[][] {{7,0}, {7,7}}, "♜");
-      PIECES.put(new int[][] {{0,2}, {0,5}}, "♗");
-      PIECES.put(new int[][] {{7,2}, {7,5}}, "♝");
-      PIECES.put(new int[][] {{0,1}, {0,6}}, "♘");
-      PIECES.put(new int[][] {{7,1}, {7,6}}, "♞");
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(0,3))),                  new Pair<>("♔", new King(WHITE)));
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(7,3))),                  new Pair<>("♚", new King(BLACK)));
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(0,4))),                  new Pair<>("♕", new Queen(WHITE)));
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(7,4))),                  new Pair<>("♛", new Queen(BLACK)));
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(0,0), new Pair<>(0,7))), new Pair<>("♖", new Rook(WHITE)));
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(7,0), new Pair<>(7,7))), new Pair<>("♜", new Rook(BLACK)));
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(0,2), new Pair<>(0,5))), new Pair<>("♗", new Bishop(WHITE)));
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(7,2), new Pair<>(7,5))), new Pair<>("♝", new Bishop(BLACK)));
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(0,1), new Pair<>(0,6))), new Pair<>("♘", new Knight(WHITE)));
+      PIECES.put(new ArrayList<>(Arrays.asList(new Pair<>(7,1), new Pair<>(7,6))), new Pair<>("♞", new Knight(BLACK)));
+   }
+
+   /*
+    * Helpmethod. Given a row - and columnindex, returns a Stream containing a pair, that has the corresponding view piece as key and the
+    * corresponding model piece as value.
+    */
+   private static Stream<Pair<String, Piece>> getViewModelPair(Integer rowIndex, Integer columnIndex) {
+      return PIECES.entrySet()
+            .stream()
+            .filter(entryset -> entryset.getKey().contains(new Pair<>(rowIndex, columnIndex)))
+            .map(entryset -> entryset.getValue());
    }
 
    /*
@@ -78,12 +93,8 @@ public final class Converter {
    public static BiFunction<Integer, Integer, Optional<String>> viewPieceAtIndexes = (rowIndex, columnIndex) -> {
       if (rowIndex == 1) return Optional.of("♙");
       if (rowIndex == 6) return Optional.of("♟");
-      return PIECES.entrySet()
-            .stream()
-            .filter(entryset -> Stream.of(entryset.getKey())
-                  .filter(key -> Arrays.equals(key, new int[]{rowIndex, columnIndex}))
-                  .count() == 1)
-            .map(entryset -> entryset.getValue())
+      return getViewModelPair(rowIndex, columnIndex)
+            .map(e -> e.getKey())
             .findFirst();
    };
 
@@ -91,19 +102,11 @@ public final class Converter {
     * returns an Optional containing the piece to be used in the model or no value, given a row - and column index.
     */
    public static BiFunction<Integer, Integer, Optional<Piece>> modelPieceAtIndexes = (rowIndex, columnIndex) -> {
-      if (rowIndex == 1)                                           return Optional.of(new Pawn(WHITE));
-      if (rowIndex == 6)                                           return Optional.of(new Pawn(BLACK));
-      if (rowIndex == 0 && columnIndex == 3)                       return Optional.of(new King(WHITE));
-      if (rowIndex == 7 && columnIndex == 3)                       return Optional.of(new King(BLACK));
-      if (rowIndex == 0 && columnIndex == 4)                       return Optional.of(new Queen(WHITE));
-      if (rowIndex == 7 && columnIndex == 4)                       return Optional.of(new Queen(BLACK));
-      if (rowIndex == 0 && (columnIndex == 0 || columnIndex == 7)) return Optional.of(new Rook(WHITE));
-      if (rowIndex == 7 && (columnIndex == 0 || columnIndex == 7)) return Optional.of(new Rook(BLACK));
-      if (rowIndex == 0 && (columnIndex == 2 || columnIndex == 5)) return Optional.of(new Bishop(WHITE));
-      if (rowIndex == 7 && (columnIndex == 2 || columnIndex == 5)) return Optional.of(new Bishop(BLACK));
-      if (rowIndex == 0 && (columnIndex == 1 || columnIndex == 6)) return Optional.of(new Knight(WHITE));
-      if (rowIndex == 7 && (columnIndex == 1 || columnIndex == 6)) return Optional.of(new Knight(BLACK));
-      return Optional.empty();
+      if (rowIndex == 1)    return Optional.of(new Pawn(WHITE));
+      if (rowIndex == 6)    return Optional.of(new Pawn(BLACK));
+      return getViewModelPair(rowIndex, columnIndex)
+            .map(e -> e.getValue())
+            .findFirst();
    };
 
    /*
@@ -111,7 +114,7 @@ public final class Converter {
     * 1 (symbol for the piece in the view), 2 (path to image used in the DragView when moving pieces). The key
     * of FenMap is a piece for the model.
     */
-   public static List<String> getValues(Predicate<Entry<Piece, List<String>>> predicate, int value){
+   private static List<String> getValues(Predicate<Entry<Piece, List<String>>> predicate, int value){
       return FEN_MAP
             .entrySet()
             .stream()
@@ -121,15 +124,37 @@ public final class Converter {
             .collect(Collectors.toList());
    }
 
-   //returns a corresponding piece for the view, when given a piece from the model.
-   public static String getViewPieceFromModelPiece(Piece piece) {
+   //help method.
+   private static Piece getKey(Predicate<Entry<Piece, List<String>>> predicate){
+      return FEN_MAP
+            .entrySet()
+            .stream()
+            .filter(predicate)
+            .map(e -> e.getKey())
+            .findFirst()
+            .get();
+   }
+
+   //given the view piece, this method returns a corresponding model piece.
+   public static Piece convert(String viewPiece) {
+      return getKey(e -> e.getValue().get(1) == viewPiece);
+   }
+
+   //given a model piece, returns the corresponding view piece.
+   public static String convert(Piece piece) {
       return getValues(e -> e.getKey().getClass() == piece.getClass()
             && e.getKey().getColor() == piece.getColor(), 1).get(0);
    }
 
-   //given a FEN notation for a piece, returns a Piece for the view.
+   //given a FEN notation for a piece, returns a piece for the view.
    public static String getViewPieceFromFEN(String fen) {
       return getValues(e -> e.getValue().get(0) == fen, 1).get(0);
+   }
+
+   //given a model piece, return it's FEN-notation
+   public static String getFENFromModelPiece(Piece piece) {
+      return getValues(e -> e.getKey().getClass() == piece.getClass()
+            && e.getKey().getColor() == piece.getColor(), 0).get(0);
    }
 
    //returns all white pieces used in the view.
@@ -142,25 +167,10 @@ public final class Converter {
       return getValues(e -> e.getKey().getColor() == BLACK, 1);
    }
 
-   //return the path to the image,needed to handle dragging the pieces.
+   //return the path to the image,needed to handle dragging of the pieces.
    public static String getPathToImage(String viewPiece, Double labelWidth) {
-      int imageSize = labelWidth < 78.0 ? 2 : 3;
-      return getValues(e -> (e.getValue().get(1)) == viewPiece, imageSize).get(0);
+      return getValues(e -> (e.getValue().get(1)) == viewPiece,
+            labelWidth < SIZE_THRESHOLD ? SMALL_IMAGE : BIG_IMAGE).get(0);
    }
 
-   //help method.
-   public static Piece getKey(Predicate<Entry<Piece, List<String>>> predicate){
-      return FEN_MAP
-            .entrySet()
-            .stream()
-            .filter(predicate)
-            .map(e -> e.getKey())
-            .findFirst()
-            .get();
-   }
-
-   //given the view piece, this method returns a corresponding model piece.
-   public static Piece getModelPieceFromViewPiece(String viewPiece) {
-      return getKey(e -> e.getValue().get(1) == viewPiece);
-   }
 }

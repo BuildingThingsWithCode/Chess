@@ -26,7 +26,7 @@ public class ViewListeners {
       /*
        * set a listener on the move from the user. Translates the move (to account for
        * playing with white or black at the bottom of the board). Transforms the move
-       * into a move in the model and lets the model play this move.
+       * into a move for the model and lets the model play this move.
        */
       getMove().addListener(move = (ObservableValue, oldValue, newValue) -> {
          Move translatedMove = boardHandler.translateMove.apply(newValue);

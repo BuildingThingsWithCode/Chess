@@ -4,6 +4,7 @@ import static javafx.scene.paint.Color.BLACK;
 import static javafx.scene.paint.Color.WHITE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import chess.Board;
@@ -22,8 +23,11 @@ class FieldTest {
 
 	@Test
 	void testGetX() {
-		assertEquals(0, field1.getX());
-		assertEquals(2, field2.getX());
+	   Assertions.assertAll(() -> assertEquals(0, field1.getX()),
+	      () ->  assertEquals(2, field2.getX()));
+    
+		//assertEquals(0, field1.getX());
+		//assertEquals(2, field2.getX());
 	}
 
 	@Test

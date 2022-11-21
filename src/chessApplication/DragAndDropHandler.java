@@ -38,10 +38,13 @@ import javafx.scene.paint.Color;
 
 public final class DragAndDropHandler {
 
-   private static final Label                  TEMP_BG         = new Label();
-   private static final Background             DARK_GOLD       = new Background(new BackgroundFill(DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY));
-   private static final ObjectProperty<Move>   MOVE            = new SimpleObjectProperty<Move>();
-   private static final ObservableBooleanValue MOVE_LEGAL      = new SimpleBooleanProperty(false);
+   private static final double                 SIZE_THRESHOLD   = 78.0;
+   private static final int                    OFFSET_SMALL_IMG = 14;
+   private static final int                    OFFSET_BIG_IMG   = 22;
+   private static final Label                  TEMP_BG          = new Label();
+   private static final Background             DARK_GOLD        = new Background(new BackgroundFill(DARKGOLDENROD, CornerRadii.EMPTY, Insets.EMPTY));
+   private static final ObjectProperty<Move>   MOVE             = new SimpleObjectProperty<Move>();
+   private static final ObservableBooleanValue MOVE_LEGAL       = new SimpleBooleanProperty(false);
 
    //CONSTRUCTOR
    private DragAndDropHandler() {}
@@ -58,7 +61,7 @@ public final class DragAndDropHandler {
          if (l.getText() != "") {
             ClipboardContent content = new ClipboardContent();
             content.putString(l.getText());
-            int offset = l.getWidth() < 78.0 ? 14 : 22;
+            int offset = l.getWidth() < SIZE_THRESHOLD ? OFFSET_SMALL_IMG : OFFSET_BIG_IMG;
             db.setDragView(new Image(getPathToImage(l.getText(), l.getWidth())), offset, offset);
             l.setText("");
             db.setContent(content);
@@ -69,9 +72,9 @@ public final class DragAndDropHandler {
    };
 
    /*
-    * returns true if the label we enter is empty or contains an enemy.
+    * returns true if the label we enter is empty or contains a piece from the opponent.
     */
-   private static BiPredicate<Label, DragEvent> emptyOrDifferentColors = (l, e) -> {
+   private static BiPredicate<Label, DragEvent> emptyOrOpponent = (l, e) -> {
       if (l.getText() == "") return true;
       Color  attack  = getAllWhiteViewPieces().contains(e.getDragboard().getString()) ? WHITE : BLACK;
       Color  defense = getAllWhiteViewPieces().contains(l.getText()) ? WHITE : BLACK;
@@ -86,7 +89,7 @@ public final class DragAndDropHandler {
       EventHandler<DragEvent> onDragOver = e -> {
          if (e.getGestureSource() != l 
                && e.getDragboard().hasString() 
-               && emptyOrDifferentColors.test(l, e)) e.acceptTransferModes(TransferMode.MOVE);
+               && emptyOrOpponent.test(l, e)) e.acceptTransferModes(TransferMode.MOVE);
          e.consume();
       };
       l.setOnDragOver(onDragOver);
@@ -97,7 +100,7 @@ public final class DragAndDropHandler {
     */
    static Consumer<Label> setOnDragExited = l -> {
       EventHandler<DragEvent> onDragExited = e -> {
-         if (emptyOrDifferentColors.test(l, e)) l.setBackground(TEMP_BG.getBackground());
+         if (emptyOrOpponent.test(l, e)) l.setBackground(TEMP_BG.getBackground());
          e.consume();
       };
       l.setOnDragExited(onDragExited);
@@ -109,7 +112,7 @@ public final class DragAndDropHandler {
     */
    static Consumer<Label> setOnDragEntered = l -> {
       EventHandler<DragEvent> onDragEntered = e -> {
-         if (e.getDragboard().hasString() && emptyOrDifferentColors.test(l, e)) { 
+         if (e.getDragboard().hasString() && emptyOrOpponent.test(l, e)) { 
             TEMP_BG.setBackground(l.getBackground());
             if (e.getGestureSource() != l) l.setBackground(DARK_GOLD);
          }
@@ -122,7 +125,7 @@ public final class DragAndDropHandler {
     * Method that creates a move for the model, from the move made by the user
     * in the view.
     */
-   private static BiFunction<Label, DragEvent, Move> getMoveFromUserInput = (l, e) -> {
+   private static BiFunction<Label, DragEvent, Move> convertViewToModel = (l, e) -> {
       Field start = new Field(getRowIndex(((Label) e.getGestureSource())), getColumnIndex(((Label) e.getGestureSource())));
       Field end   = new Field(getRowIndex(l), getColumnIndex(l));
       return new Move(start, end);
@@ -136,7 +139,7 @@ public final class DragAndDropHandler {
       EventHandler<DragEvent> onDragDropped = e -> {
          ((SimpleBooleanProperty) MOVE_LEGAL).set(false);
          if (e.getDragboard().hasString()) {
-            MOVE.set(getMoveFromUserInput.apply(l, e));
+            MOVE.set(convertViewToModel.apply(l, e));
             if (MOVE_LEGAL.get() == true) {
                Sounds.move();
                l.setBackground(TEMP_BG.getBackground());

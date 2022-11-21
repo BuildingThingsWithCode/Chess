@@ -51,23 +51,7 @@ public interface MoveValidator extends BiFunction <Game, Move, ValidationResult>
 				LEGAL_MOVE : reasonForKing().apply(g, m);
 	}
 
-	static MoveValidator reasonForKing() {
-		return (g, m) -> {
-			if (m.getPiece() instanceof King && !((King) m.getPiece()).castling(g, m)) {
-				King king = (King) m.getPiece();
-				//we need this check because all further checks depends on knowing that the king makes a legal move.
-				if (oneRowOrOneColumnOrBoth.test(m) || (twoColumns.test(m) && noRows.test(m))) {
-					if (! king.notInCheck.test(g))              return CHECK_ON_KING_CANNOT_CASTLE;
-					if (king.hasMoved())                        return KING_HAS_MOVED_CANNOT_CASTLE;
-					if (! king.rookEligibleToCastle.test(g, m)) return ROOK_HAS_MOVED_CANNOT_CASTLE;
-					if (! king.kingEligibleToCastle.test(g, m)) return KING_MOVES_OVER_FIELD_IN_CHECK;
-				}
-			}
-			return ILLEGAL_MOVE_FOR_PIECE;
-		};
-	}
-
-	static MoveValidator pathUnobstructed() {
+		static MoveValidator pathUnobstructed() {
 		return (g, m) -> pathUnobstructed.test(g, m) ?
 				LEGAL_MOVE : PATH_IS_OBSTRUCTED;
 	}
@@ -86,7 +70,23 @@ public interface MoveValidator extends BiFunction <Game, Move, ValidationResult>
 		return (g, m) -> kingSave.test(g, m) ?
 				LEGAL_MOVE : CHECK_ON_KING;
 	}
-
+	
+	static MoveValidator reasonForKing() {
+      return (g, m) -> {
+         if (m.getPiece() instanceof King && !((King) m.getPiece()).castling(g, m)) {
+            King king = (King) m.getPiece();
+            //we need this check because all further checks depends on knowing that the king makes a legal move.
+            if (oneRowOrOneColumnOrBoth.test(m) || (twoColumns.test(m) && noRows.test(m))) {
+               if (! king.notInCheck.test(g))              return CHECK_ON_KING_CANNOT_CASTLE;
+               if (king.hasMoved())                        return KING_HAS_MOVED_CANNOT_CASTLE;
+               if (! king.rookEligibleToCastle.test(g, m)) return ROOK_HAS_MOVED_CANNOT_CASTLE;
+               if (! king.kingEligibleToCastle.test(g, m)) return KING_MOVES_OVER_FIELD_IN_CHECK;
+            }
+         }
+         return ILLEGAL_MOVE_FOR_PIECE;
+      };
+   }
+	
 	default MoveValidator and (MoveValidator other) {
 		//fail safe
 		Objects.requireNonNull(other);
